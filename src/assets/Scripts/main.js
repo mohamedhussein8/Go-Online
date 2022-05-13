@@ -92,16 +92,7 @@
     $(this).prev().removeClass("active");
   });
 
-  //Canvas Menu
-  $(".canvas__open").on("click", function () {
-    $(".offcanvas-menu-wrapper").addClass("active");
-    $(".offcanvas-menu-overlay").addClass("active");
-  });
 
-  $(".offcanvas-menu-overlay").on("click", function () {
-    $(".offcanvas-menu-wrapper").removeClass("active");
-    $(".offcanvas-menu-overlay").removeClass("active");
-  });
 
 
   /*--------------------------
@@ -111,17 +102,7 @@
 
 
 
-  /*-------------------
-		Radio Btn
-	--------------------- */
-  $(
-    ".product__color__select label, .shop__sidebar__size label, .product__details__option__size label"
-  ).on("click", function () {
-    $(
-      ".product__color__select label, .shop__sidebar__size label, .product__details__option__size label"
-    ).removeClass("active");
-    $(this).addClass("active");
-  });
+
 
   /*-------------------
 		Scroll

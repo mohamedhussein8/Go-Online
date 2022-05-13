@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/SharedComponents/header/header.component';
 import { FooterComponent } from './Components/SharedComponents/footer/footer.component';
+import { ProductComponent } from './Components/SharedComponents/product/product.component';
 
 
 
@@ -12,7 +13,8 @@ import { FooterComponent } from './Components/SharedComponents/footer/footer.com
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

@@ -110,42 +110,11 @@
       </div>
     </div>
     <div class="row product__filter">
-      <div *ngFor="let item of ProdList;  index as i;" [ngClass]="{'col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix':true, 'new-arrivals':item.IsNew, 'hot-sales':!item.IsNew}">
-        <div class="product__item">
-          <div class="product__item__pic set-bg" style="background-image:url('{{item.Image}}')">
-            <span class="label" [hidden]="!item.IsNew">New</span>
-            <ul class="product__hover">
-              <li><a href="#"><img src="assets/img/icon/heart.png" alt=""></a></li>
-              <li><a href="#"><img src="assets/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-              <li><a href="#"><img src="assets/img/icon/search.png" alt=""></a></li>
-            </ul>
-          </div>
-          <div class="product__item__text">
-            <h6>{{item.Name}}</h6>
-            <a href="#" class="add-cart">+ Add To Cart</a>
-            <div class="rating">
-              <i *ngFor="let number of [].constructor(item.Rate)" class="fa fa-star" style="color: #f7941d;"></i>
-              <i *ngFor="let number of [].constructor(5-item.Rate)" class="fa fa-star-o"></i>
-            </div>
+      <ng-container  *ngFor="let item of ProdList;  index as i;"  >
+      <app-product [app-product]="item" [ngClass]="{'col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix':true, 'new-arrivals':item.IsNew, 'hot-sales':!item.IsNew}">
+      </app-product>
+    </ng-container>
 
-
-
-
-            <h5>{{item.Price|currency}}</h5>
-            <div class="product__color__select">
-              <label for="pc-1">
-                <input type="radio" id="pc-1">
-              </label>
-              <label class="active black" for="pc-2">
-                <input type="radio" id="pc-2">
-              </label>
-              <label class="grey" for="pc-3">
-                <input type="radio" id="pc-3">
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
     </div>
@@ -177,19 +146,19 @@
           <h2>Multi-pocket Chest Bag Black</h2>
           <div class="categories__deal__countdown__timer" id="countdown">
             <div class="cd-item">
-              <span>3</span>
+              <span>{{days}}</span>
               <p>Days</p>
             </div>
             <div class="cd-item">
-              <span>1</span>
+              <span>{{hours}}</span>
               <p>Hours</p>
             </div>
             <div class="cd-item">
-              <span>50</span>
+              <span>{{minutes}}</span>
               <p>Minutes</p>
             </div>
             <div class="cd-item">
-              <span>18</span>
+              <span>{{seconds}}</span>
               <p>Seconds</p>
             </div>
           </div>

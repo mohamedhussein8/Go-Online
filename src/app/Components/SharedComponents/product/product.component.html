@@ -1,0 +1,36 @@
+<div class="col-12">
+  <div class="product__item">
+    <div class="product__item__pic set-bg" style="background-image:url('{{item.Image}}')">
+      <span class="label" [hidden]="!item.IsNew">New</span>
+      <ul class="product__hover">
+        <li><a href="#"><img src="assets/img/icon/heart.png" alt=""></a></li>
+        <li><a href="#"><img src="assets/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
+        <li><a href="#"><img src="assets/img/icon/search.png" alt=""></a></li>
+      </ul>
+    </div>
+    <div class="product__item__text">
+      <h6>{{item.Name}}</h6>
+      <a href="#" class="add-cart">+ Add To Cart</a>
+      <div class="rating">
+        <ng-container *ngFor="let number of [].constructor(5); index as i">
+          <button class="btn px-0 mx-0" style="outline: none; box-shadow:none;" (click)="editRate(i)"><i
+            [ngClass]="{'fa-star':i<=item.Rate, 'fa fa-star-o':i>item.Rate ,'goldRate':i<=item.Rate, 'fa':true}"></i>
+          </button>
+        </ng-container>
+      </div>
+
+      <h5>{{item.Price|currency}}</h5>
+      <div class="product__color__select">
+        <label class="" for="pc-1" (click)="ChangeColorSelection($event)">
+          <input type="radio" id="pc-1">
+        </label>
+        <label class="black active" for="pc-2" (click)="ChangeColorSelection($event)">
+          <input type="radio" id="pc-2">
+        </label>
+        <label class="grey" for="pc-3" (click)="ChangeColorSelection($event)">
+          <input type="radio" id="pc-3">
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
