@@ -27,9 +27,27 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/Styles/bootstrap.min.css",
+              "src/assets/Styles/font-awesome.min.css",
+              "src/assets/Styles/elegant-icons.css",
+              "src/assets/Styles/magnific-popup.css",
+              "src/assets/Styles/nice-select.css",
+              "src/assets/Styles/owl.carousel.min.css",
+              "src/assets/Styles/slicknav.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/Scripts/jquery-3.3.1.min.js",
+              "src/assets/Scripts/bootstrap.min.js",
+              "src/assets/Scripts/jquery.nice-select.min.js",
+              "src/assets/Scripts/jquery.nicescroll.min.js",
+              "src/assets/Scripts/jquery.magnific-popup.min.js",
+              "src/assets/Scripts/jquery.countdown.min.js",
+              "src/assets/Scripts/jquery.slicknav.js",
+              "src/assets/Scripts/mixitup.min.js",
+              "src/assets/Scripts/owl.carousel.min.js",
+              "src/assets/Scripts/main.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,13 +107,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
