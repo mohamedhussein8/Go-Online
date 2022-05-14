@@ -3,7 +3,7 @@
 <div ngClass="{{offcanvasMenuWrapperClass}}">
   <div class="offcanvas__option">
     <div class="offcanvas__links">
-      <a href="login.html">Sign in</a>
+      <a routerLink="/Login" class="nav-link">Sign in</a>
       <a href="#">FAQs</a>
     </div>
     <div class="offcanvas__top__hover">
@@ -18,8 +18,8 @@
   <div class="offcanvas__nav__option">
     <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
     <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-    <a href="#"><img src="assets/img/icon/cart.png" alt=""> <span>0</span></a>
-    <div class="price">$0.00</div>
+    <a routerLink="/Shopping-Cart" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{this.itemsCount}}</span></a>
+    <div class="price">{{this.price|currency}}</div>
   </div>
   <div id="mobile-menu-wrap">
 
@@ -31,7 +31,7 @@
 
         <ul>
           <li class="active"><a href="./index.html" role="menuitem">Home</a></li>
-          <li><a href="./shop.html" role="menuitem">Shop</a></li>
+          <li><a routerLink="/Shop" class="nav-link" role="menuitem">Shop</a></li>
           <li class="slicknav_parent slicknav_collapsed">
             <a href="#item-1" class="p-0 " data-toggle="collapse" (click)="openDrop()">
               Products
@@ -76,7 +76,7 @@
         <div class="col-lg-6 col-md-5">
           <div class="header__top__right">
             <div class="header__top__links">
-              <a href="login.html">Sign in</a>
+              <a routerLink="/Login" class="nav-link" >Sign in</a>
               <a href="#">FAQs</a>
             </div>
             <div class="header__top__hover">
@@ -96,25 +96,17 @@
     <div class="row">
       <div class="col-lg-3 col-md-3">
         <div class="header__logo">
-          <a href="./index.html"><img src="assets/img/logo.png" alt=""></a>
+          <a routerLink="Home" routerLinkActive="router-link-active" ><img src="assets/img/logo.png" alt=""></a>
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
         <nav class="header__menu mobile-menu">
           <ul>
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li><a href="./shop.html">Shop</a></li>
-            <li><a href="#">Pages</a>
-              <ul class="dropdown">
-                <li><a href="./about.html">About Us</a></li>
-                <li><a href="./shop-details.html">Shop Details</a></li>
-                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                <li><a href="./checkout.html">Check Out</a></li>
-                <li><a href="./blog-details.html">Blog Details</a></li>
-              </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contacts</a></li>
+            <li class="active"><a routerLink="Home">Home</a></li>
+            <li><a routerLink="/Shop" class="nav-link">Shop</a></li>
+            <li><a routerLink="Blog">Blog</a></li>
+            <li><a routerLink="Contact">Contacts</a></li>
+            <li><a routerLink="AboutUs">About</a></li>
           </ul>
         </nav>
       </div>
@@ -122,8 +114,8 @@
         <div class="header__nav__option">
           <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
           <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-          <a href="#"><img src="assets/img/icon/cart.png" alt=""> <span>0</span></a>
-          <div class="price">$0.00</div>
+          <a routerLink="/Shopping-Cart" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{this.itemsCount}}</span></a>
+          <div class="price">{{this.price|currency}}</div>
         </div>
       </div>
     </div>
