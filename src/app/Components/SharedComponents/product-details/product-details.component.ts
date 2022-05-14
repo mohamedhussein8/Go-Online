@@ -19,10 +19,15 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               productService:ProductsManagementService,
               private basketService:BascketManagementService) {
+
+
      this.quantity=2;
-     this.currPrdID= Number(this.activatedRoute.snapshot.paramMap.get('id'))
-     this.item= productService.getProductById(this.currPrdID);
-     this.ProdList=productService.getAll();
+     this.item=productService.getProductById(this.currPrdID);
+     this.ProdList=productService.getFirstFourItems();
+     this.activatedRoute.paramMap.subscribe((paramMap)=>{
+        this.currPrdID= Number(paramMap.get('id'))
+        this.item= productService.getProductById(this.currPrdID);
+    });
 
 
    }

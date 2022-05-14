@@ -6,7 +6,7 @@
                   <h4>{{pageTitle}}</h4>
                   <div class="breadcrumb__links">
                     <a  routerLink="/Home">Home</a>
-                    <a *ngFor="let item in path"  routerLink="/{{item}}">{{item}}</a>
+                    <a *ngFor="let item of path"  routerLink="/{{item}}">{{item}}</a>
                     <span>{{page}}</span>
                   </div>
               </div>

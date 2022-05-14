@@ -14,10 +14,13 @@ export class BreadCrumbComponent implements OnInit,OnChanges {
     this.page="Shop";
     this.path=this.page.split("/");
     this.pageTitle=this.path[this.path.length-1];
+    this.path=this.path.slice(0,this.path.length-1);
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.path=this.page.split("/");
-    this.pageTitle=this.path[this.path.length-1];
+    this.pageTitle=this.path[this.path.length-1]
+    this.path=this.path.slice(0,this.path.length-1);
+    ;
 
   }
 

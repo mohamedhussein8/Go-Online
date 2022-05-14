@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IBasketItem } from 'src/app/Models/IBasketItem';
 import { IProduct } from 'src/app/Models/IProduct';
+import { BascketManagementService } from 'src/app/Services/bascket-management.service';
 
 @Component({
   selector: 'app-product',
@@ -10,7 +12,7 @@ export class ProductComponent implements OnInit {
   @Input('app-product') item!:IProduct;
 
 
-  constructor() {
+  constructor(private basketService:BascketManagementService) {
    }
 
   ngOnInit(): void {
@@ -24,6 +26,16 @@ export class ProductComponent implements OnInit {
   editRate(rate:number){
     this.item.Rate=rate;
     console.log(rate);
+
+  }
+  AddToCart(){
+    var newItem:IBasketItem={
+      BasketId:this.basketService.Basket.Id,
+      TotalPrice:this.item.Price,
+      ProductQuantity:1,
+      Product:this.item
+    }
+    this.basketService.AddToCart(newItem);
 
   }
 

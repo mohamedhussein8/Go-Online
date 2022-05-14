@@ -10,7 +10,7 @@
     </div>
     <div class="product__item__text">
       <h6>{{item.Name}}</h6>
-      <a href="#" class="add-cart">+ Add To Cart</a>
+      <a routerLink="/Shopping-Cart" (click)="AddToCart()" class="add-cart">+ Add To Cart</a>
       <div class="rating">
         <ng-container *ngFor="let number of [].constructor(5); index as i">
           <button class="btn px-0 mx-0" style="outline: none; box-shadow:none;" (click)="editRate(i)"><i

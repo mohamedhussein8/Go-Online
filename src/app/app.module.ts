@@ -18,6 +18,7 @@ import { BlogComponent } from './Components/SharedComponents/blog/blog.component
 import { ContactComponent } from './Components/SharedComponents/contact/contact.component';
 import { AboutUsComponent } from './Components/SharedComponents/about-us/about-us.component';
 import { BlogDetailsComponent } from './Components/SharedComponents/blog-details/blog-details.component';
+import { FormsModule, NgModel } from '@angular/forms';
 
 
 
@@ -42,7 +43,8 @@ import { BlogDetailsComponent } from './Components/SharedComponents/blog-details
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
 
   ],
   providers: [],

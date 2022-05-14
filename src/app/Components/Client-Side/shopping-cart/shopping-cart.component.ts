@@ -11,11 +11,23 @@ import { BascketManagementService } from 'src/app/Services/bascket-management.se
 export class ShoppingCartComponent implements OnInit {
   Basket:IBasket;
 
-  constructor(basketService:BascketManagementService) {
-    this.Basket=basketService.Basket;
+  constructor(private bascketService:BascketManagementService) {
+    this.Basket=bascketService.Basket;
    }
 
   ngOnInit(): void {
+  }
+  deicreament(id:number){
+    this.bascketService.deicreamentItem(id);
+  }
+  increament(id:number){
+    this.bascketService.increamentItem(id);
+  }
+  changeItemQuantity(id:number, quantity:number){
+    this.bascketService.changeItemQuantity(id, quantity);
+  }
+  RemoveItem(id:number){
+    this.bascketService.RemoveItemById(id);
   }
 
 }

@@ -259,4 +259,14 @@
   padding-left: 30px;
 }
 
+.list-group-item.active{
+    background-color: #0d0d0d !important;
+    border-bottom: 1px solid   #E63334 ;
+}
+
+.list-group-item.active a{
+  color: white !important;
+
+}
+
 
