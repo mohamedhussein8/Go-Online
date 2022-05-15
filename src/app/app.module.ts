@@ -19,6 +19,9 @@ import { ContactComponent } from './Components/SharedComponents/contact/contact.
 import { AboutUsComponent } from './Components/SharedComponents/about-us/about-us.component';
 import { BlogDetailsComponent } from './Components/SharedComponents/blog-details/blog-details.component';
 import { FormsModule, NgModel } from '@angular/forms';
+import { OrdersComponent } from './Components/Client-Side/orders/orders.component';
+import { OrderComponent } from './Components/Client-Side/order/order.component';
+import { MainLayoutComponentComponent } from './Components/Client-Side/main-layout-component/main-layout-component.component';
 
 
 
@@ -39,7 +42,10 @@ import { FormsModule, NgModel } from '@angular/forms';
     BlogComponent,
     ContactComponent,
     AboutUsComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    OrdersComponent,
+    OrderComponent,
+    MainLayoutComponentComponent
   ],
   imports: [
     BrowserModule,

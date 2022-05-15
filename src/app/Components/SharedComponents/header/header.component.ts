@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IBasket } from 'src/app/Models/IBasket';
 import { BascketManagementService } from 'src/app/Services/bascket-management.service';
 
 @Component({
@@ -11,22 +12,19 @@ export class HeaderComponent implements OnInit {
   offcanvasMenuOverlayClass:string;
   offcanvasMenuWrapperClass:string;
   price:number;
-  itemsCount:number;
-  constructor(basketService:BascketManagementService) {
+  bascket:IBasket;
+
+  constructor(public basketService:BascketManagementService) {
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay";
     this.offcanvasMenuWrapperClass="offcanvas-menu-wrapper";
     this.arrow="►";
     this.price=0;
-    this.itemsCount=0;
+    this.bascket=basketService.Basket;
+    // this.basketService.getTotalPrice().subscribe(_price=>{
+    //   alert(_price)
+    //   this.price=_price;
+    // });
 
-    basketService.getTotalPrice()
-    .subscribe(_price=>{
-      this.price=_price;
-    });
-    basketService.getItemNumber()
-    .subscribe(_count=>{
-      this.itemsCount=_count;
-    });
    }
 
   ngOnInit(): void {

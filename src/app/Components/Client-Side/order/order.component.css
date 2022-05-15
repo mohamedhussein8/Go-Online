@@ -1,0 +1,126 @@
+/*---------------------
+  Shopping Cart
+-----------------------*/
+table {
+	width: 100%;
+}
+
+table thead {
+	border-bottom: 2px solid gray;
+  background-color: #e1e1e1;
+}
+
+table thead tr th {
+	color: #111111;
+	font-size: 16px;
+	font-weight: 700;
+	text-transform: uppercase;
+  padding: 20px;
+
+}
+
+  table tbody tr td  {
+	padding: 20px;
+}
+
+  table tbody tr td .product__cart__item {
+	width: 400px;
+}
+
+  table tbody tr td .product__cart__item .product__cart__item__pic {
+	float: left;
+	margin-right: 30px;
+}
+
+  table tbody tr td .product__cart__item .product__cart__item__text {
+	overflow: hidden;
+	padding-top: 21px;
+}
+
+  table tbody tr td .product__cart__item .product__cart__item__text h6 {
+	color: #111111;
+	font-size: 15px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+  table tbody tr td .product__cart__item .product__cart__item__text h5 {
+	color: #0d0d0d;
+	font-weight: 700;
+}
+
+  table tbody tr td .quantity__item {
+	width: 175px;
+}
+
+
+
+
+  table tbody tr td .cart__price {
+	color: #111111;
+	font-size: 18px;
+	font-weight: 700;
+	width: 140px;
+}
+
+
+
+
+.continue__btn a {
+	color: #111111;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	border: 1px solid #e1e1e1;
+	padding: 14px 35px;
+	display: inline-block;
+}
+
+
+
+.cart__total {
+	background: #f3f2ee;
+	padding: 35px 40px 40px;
+}
+
+.cart__total h6 {
+	color: #111111;
+	text-transform: uppercase;
+	margin-bottom: 12px;
+}
+
+.cart__total ul {
+	margin-bottom: 25px;
+}
+
+.cart__total ul li {
+	list-style: none;
+	font-size: 16px;
+	color: #444444;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.cart__total ul li span {
+	font-weight: 700;
+	color: #e53637;
+	float: right;
+}
+
+.cart__total .primary-btn {
+	display: block;
+	padding: 12px 10px;
+	text-align: center;
+	letter-spacing: 2px;
+}
+.inputQuantity::-webkit-outer-spin-button,
+.inputQuantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.inputQuantity{
+  -moz-appearance: textfield;
+}

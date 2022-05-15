@@ -18,8 +18,8 @@
   <div class="offcanvas__nav__option">
     <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
     <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{this.itemsCount}}</span></a>
-    <div class="price">{{this.price|currency}}</div>
+    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket.Items.length}}</span></a>
+    <div class="price">{{bascket.TotalPrice|currency}}</div>
   </div>
   <div id="mobile-menu-wrap">
 
@@ -45,7 +45,7 @@
                   <a routerLink="/Shopping-Cart" role="Shopping-Cart" >Shopping Cart</a>
                 </li  >
                 <li  class="list-group-item " routerLinkActive="active">
-                  <a routerLink="/CheckOut"   >Check Out</a>
+                  <a routerLink="/CheckOut"  >Check Out</a>
                 </li>
               </ul>
             </div>
@@ -53,6 +53,7 @@
           <li routerLinkActive="active" class="list-group-item py-0"><a routerLink="/Blog" class="nav-link" role="menuitem">Blog</a></li>
           <li routerLinkActive="active"  class="list-group-item py-0"><a routerLink="/Contact"   role="menuitem">Contacts</a></li>
           <li routerLinkActive="active"  class="list-group-item  py-0"><a routerLink="/AboutUs"  class="nav-link" role="menuitem">About</a></li>
+          <li routerLinkActive=""  class="list-group-item  py-0"><a routerLink="/"  class="nav-link text-danger" role="menuitem">Be a Vendor</a></li>
         </ul>
       </nav>
     </div>
@@ -76,6 +77,7 @@
         <div class="col-lg-6 col-md-5">
           <div class="header__top__right">
             <div class="header__top__links">
+              <a routerLink="/"  class="nav-link text-danger" >Be a Vendor</a>
               <a routerLink="/Login" class="nav-link" >Sign in</a>
               <a href="#">FAQs</a>
             </div>
@@ -114,8 +116,8 @@
         <div class="header__nav__option">
           <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
           <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{this.itemsCount}}</span></a>
-          <div class="price">{{this.price|currency}}</div>
+          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket.Items.length}}</span></a>
+          <div class="price">{{bascket.TotalPrice|currency}}</div>
         </div>
       </div>
     </div>

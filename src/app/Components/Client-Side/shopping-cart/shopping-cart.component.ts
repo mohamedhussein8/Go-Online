@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IBasket } from 'src/app/Models/IBasket';
 import { BascketManagementService } from 'src/app/Services/bascket-management.service';
+import { OrdersManagementService } from 'src/app/Services/orders-management.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -29,5 +30,6 @@ export class ShoppingCartComponent implements OnInit {
   RemoveItem(id:number){
     this.bascketService.RemoveItemById(id);
   }
+
 
 }

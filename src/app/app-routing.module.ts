@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CheckOutComponent } from './Components/Client-Side/check-out/check-out.component';
+import { OrdersComponent } from './Components/Client-Side/orders/orders.component';
+import { OrderComponent } from './Components/Client-Side/order/order.component';
 import { ShopComponent } from './Components/Client-Side/shop/shop.component';
 import { ShoppingCartComponent } from './Components/Client-Side/shopping-cart/shopping-cart.component';
 import { AboutUsComponent } from './Components/SharedComponents/about-us/about-us.component';
@@ -12,9 +14,11 @@ import { HomeComponent } from './Components/SharedComponents/home/home.component
 import { LoginComponent } from './Components/SharedComponents/login/login.component';
 import { ProductDetailsComponent } from './Components/SharedComponents/product-details/product-details.component';
 import { RegisterComponent } from './Components/SharedComponents/register/register.component';
+import { MainLayoutComponentComponent } from './Components/Client-Side/main-layout-component/main-layout-component.component';
 
 
-const routes: Routes = [ // First-match wins strategy
+const routes: Routes = [
+  {path: '', component: MainLayoutComponentComponent, children:[
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {path:'Login', component:LoginComponent},
   {path:'Register', component:RegisterComponent},
@@ -27,8 +31,10 @@ const routes: Routes = [ // First-match wins strategy
   {path:'Contact', component:ContactComponent},
   {path:'AboutUs', component:AboutUsComponent},
   {path:'Blog-Details', component:BlogDetailsComponent},
-
-
+  {path:'Orders', component:OrdersComponent},
+  {path:'Order/:id', component:OrderComponent}
+  ]
+    }
 ];
 
 @NgModule({

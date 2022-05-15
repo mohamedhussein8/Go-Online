@@ -89,5 +89,11 @@ export class BascketManagementService {
     this.Basket.TotalPrice-=item.TotalPrice;
     this.Basket.Items.splice(this.Basket.Items.findIndex(prd=> prd.Product.Id==id),1);
   }
+  clearBasket(){
+    this.Basket.Id=0;
+    this.Basket.Items=[];
+    this.Basket.TotalPrice=0;
+
+  }
 
 }

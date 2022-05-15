@@ -37,4 +37,8 @@ export class ProductsManagementService {
     return this.ProdList.slice(0,4);
 
   }
+  getFirstEightItems(){
+    return this.ProdList.slice(0,8);
+
+  }
 }

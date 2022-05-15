@@ -1,0 +1,10 @@
+/*---------------------
+  Shopping Cart
+-----------------------*/
+
+.shopping__cart__table {
+	margin-bottom: 30px;
+  border:solid gray 1px;
+  border-radius:6px;
+
+}
