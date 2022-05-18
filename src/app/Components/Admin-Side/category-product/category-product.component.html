@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Add Product Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="categoryForm">  
+            <div class="mb-3">
+              <label for="name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" name="Pname" placeholder="Name" required formControlName="Name">
+            </div>       
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button mat-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left:8px ;" mat-raised-button color="primary" (click)="addCategory()" >{{actionBtn}}</button>
+
+</div>

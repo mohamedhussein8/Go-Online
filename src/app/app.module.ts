@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/SharedComponents/header/header.component';
@@ -18,11 +17,33 @@ import { BlogComponent } from './Components/SharedComponents/blog/blog.component
 import { ContactComponent } from './Components/SharedComponents/contact/contact.component';
 import { AboutUsComponent } from './Components/SharedComponents/about-us/about-us.component';
 import { BlogDetailsComponent } from './Components/SharedComponents/blog-details/blog-details.component';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgModel,ReactiveFormsModule } from '@angular/forms';
 import { OrdersComponent } from './Components/Client-Side/orders/orders.component';
 import { OrderComponent } from './Components/Client-Side/order/order.component';
 import { MainLayoutComponentComponent } from './Components/Client-Side/main-layout-component/main-layout-component.component';
-
+import { AdminLayoutComponent } from './Components/Admin-Side/admin-layout/admin-layout.component';
+import { AdminHeaderComponent } from './Components/Admin-Side/admin-header/admin-header.component';
+import { AdminSidenavComponent } from './Components/Admin-Side/admin-sidenav/admin-sidenav.component';
+import { DialogProductComponent } from './Components/Admin-Side/dialog-product/dialog-product.component';
+import { CategoryProductComponent } from './Components/Admin-Side/category-product/category-product.component';
+import { CategoryComponent } from './Components/Admin-Side/category/category.component';
+import { ProductsDashboardComponent } from './Components/Admin-Side/products-dashboard/products-dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import{MatSidenavModule} from '@angular/material/sidenav';
+import{MatToolbarModule}from '@angular/material/toolbar';
+import{MatMenuModule}from '@angular/material/menu';
+import{MatIconModule}from '@angular/material/icon';
+import{MatDividerModule}from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import{MatButtonModule} from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeAdminComponent } from './Components/Admin-Side/home-admin/home-admin.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -45,12 +66,36 @@ import { MainLayoutComponentComponent } from './Components/Client-Side/main-layo
     BlogDetailsComponent,
     OrdersComponent,
     OrderComponent,
-    MainLayoutComponentComponent
+    MainLayoutComponentComponent,
+    AdminLayoutComponent,
+    AdminHeaderComponent,
+    AdminSidenavComponent,
+    DialogProductComponent,
+    CategoryProductComponent,
+    CategoryComponent,
+    ProductsDashboardComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
+    MatInputModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
 
   ],
   providers: [],

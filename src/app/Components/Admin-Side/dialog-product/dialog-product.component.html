@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Add Product Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="productForm">  
+            <div class="mb-3">
+              <label for="name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" name="Pname" placeholder="Name" required formControlName="Name">
+            </div>
+            <div class="mb-3">
+                <label for="Price" class="form-label">Product Price</label>
+                <input type="number" class="form-control" name="Price" placeholder="Price" required formControlName="Price">
+              </div>
+              <div class="mb-3">
+                <label for="PQuantity" class="form-label">Product Quantity</label>
+                <input type="number"  class="form-control" name="PQuantity" placeholder="Quantity" required formControlName="NumberInStock">
+              </div>
+              <div class="mb-3">
+                <label for="Category"   class="form-label">Product Category</label>
+                <select class="form-select"  name="cat" id="prdCat"  class="form-control" formControlName="CategoryId">
+                    <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <label for="Image" class="form-label">Product Image</label>
+                <input type="file" (change)="onchange($event)" class="form-control" accept="image/png, image/jpeg" name="Image" placeholder="Image" required formControlName="ImageFile">
+            </div>
+            <div class="mb-3">
+              <label for="Description" class="form-label">Product Description</label>
+              <input type="text" class="form-control" name="Description" placeholder="Description" required formControlName="Description">
+            </div>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button mat-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left:8px ;" mat-raised-button color="primary" (click)="addProduct()" >{{actionBtn}}</button>
+
+</div>
