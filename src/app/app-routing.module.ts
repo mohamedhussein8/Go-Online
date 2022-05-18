@@ -15,6 +15,9 @@ import { LoginComponent } from './Components/SharedComponents/login/login.compon
 import { ProductDetailsComponent } from './Components/SharedComponents/product-details/product-details.component';
 import { RegisterComponent } from './Components/SharedComponents/register/register.component';
 import { MainLayoutComponentComponent } from './Components/Client-Side/main-layout-component/main-layout-component.component';
+import { AuthGuard } from './Guards/auth.guard';
+import { ConstantRoles } from './ViewModels/constant-roles';
+import { RolesGuard } from './Guards/roles.guard';
 import { AdminLayoutComponent } from './Components/Admin-Side/admin-layout/admin-layout.component';
 import { ProductsDashboardComponent } from './Components/Admin-Side/products-dashboard/products-dashboard.component';
 import { CategoryComponent } from './Components/Admin-Side/category/category.component';
@@ -27,7 +30,7 @@ const routes: Routes = [
   {path:'Login', component:LoginComponent},
   {path:'Register', component:RegisterComponent},
   {path:'Home', component:HomeComponent},
-  {path:'Shop', component:ShopComponent},
+  {path:'Shop', component:ShopComponent, canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.ClientRole]}},
   {path:'Shopping-Cart', component:ShoppingCartComponent},
   {path:'CheckOut', component:CheckOutComponent},
   {path:'ProductDetails/:id', component:ProductDetailsComponent},
@@ -51,4 +54,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
