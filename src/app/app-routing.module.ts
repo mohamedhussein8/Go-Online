@@ -18,6 +18,10 @@ import { MainLayoutComponentComponent } from './Components/Client-Side/main-layo
 import { AuthGuard } from './Guards/auth.guard';
 import { ConstantRoles } from './ViewModels/constant-roles';
 import { RolesGuard } from './Guards/roles.guard';
+import { AdminLayoutComponent } from './Components/Admin-Side/admin-layout/admin-layout.component';
+import { ProductsDashboardComponent } from './Components/Admin-Side/products-dashboard/products-dashboard.component';
+import { CategoryComponent } from './Components/Admin-Side/category/category.component';
+import { HomeAdminComponent } from './Components/Admin-Side/home-admin/home-admin.component';
 
 
 const routes: Routes = [
@@ -37,7 +41,13 @@ const routes: Routes = [
   {path:'Orders', component:OrdersComponent},
   {path:'Order/:id', component:OrderComponent}
   ]
-    }
+    },
+    {path:'admin', component:AdminLayoutComponent,children:[
+      {path:'', redirectTo:'home',pathMatch:'full'},
+      {path:'home',component:HomeAdminComponent },
+      {path:'product',component:ProductsDashboardComponent },
+      {path:'category', component:CategoryComponent}
+    ]}
 ];
 
 @NgModule({
