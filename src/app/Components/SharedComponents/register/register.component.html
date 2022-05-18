@@ -8,18 +8,30 @@
                         <h2>Register</h2>
                         <form action="#">
                             <div class="group-input">
-                                <label for="username">Username or email address *</label>
-                                <input type="text" id="username">
+                                <label for="fullname">Full Name *</label>
+                                <input type="text" id="fullname" name="fullname" [(ngModel)]="newUser.fullName">
                             </div>
                             <div class="group-input">
-                                <label for="pass">Password *</label>
-                                <input type="text" id="pass">
+                                <label for="username">Username *</label>
+                                <input type="text" id="username" name="username" [(ngModel)]="newUser.userName">
                             </div>
                             <div class="group-input">
-                                <label for="con-pass">Confirm Password *</label>
-                                <input type="text" id="con-pass">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" [(ngModel)]="newUser.email">
                             </div>
-                            <button type="submit" class="site-btn register-btn">REGISTER</button>
+                            <div class="group-input">
+                                <label for="phonenumber">Phone Number *</label>
+                                <input type="password" id="phonenumber" name="phonenumber" [(ngModel)]="newUser.phoneNumber">
+                            </div>
+                            <div class="group-input">
+                                <label for="password">Password *</label>
+                                <input type="password" id="password" name="password" [(ngModel)]="newUser.password">
+                            </div>
+                            <div class="group-input">
+                                <label for="confirmpassword">Confirm Password *</label>
+                                <input type="password" id="confirmpassword" name="confirmpassword">
+                            </div>
+                            <button type="submit" class="site-btn register-btn" (click)="Register()">REGISTER</button>
                         </form>
                         <div class="switch-login">
                             <a routerLink="/Login" class="nav-link" class="or-login">Or Login</a>
