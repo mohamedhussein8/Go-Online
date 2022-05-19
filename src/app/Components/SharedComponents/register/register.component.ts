@@ -11,6 +11,7 @@ import { RegisterVM } from 'src/app/ViewModels/registerVM';
 export class RegisterComponent implements OnInit {
 
   public newUser: RegisterVM = new RegisterVM();
+  public confimPass: string = "";
 
   constructor(private accountService: AccountService, private router: Router) {  }
 
