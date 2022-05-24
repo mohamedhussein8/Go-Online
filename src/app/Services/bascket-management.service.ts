@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, from, map, Observable, retry, throwError } from 'rxjs';
 import { IBasket } from '../Models/IBasket';
 import { IBasketItem } from '../Models/IBasketItem';
+import { APIResponseVM } from '../ViewModels/apiresponse-vm';
+import { GenericApihandlerService } from './generic-apihandler.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BascketManagementService {
   Basket:IBasket;
+  private buscketTotalPriceSubject: BehaviorSubject<number>;
 
-  constructor() {
+  constructor(private genericAPIHandler:GenericApihandlerService) {
     this.Basket={
       Id:0,
       Items:[
@@ -21,24 +25,55 @@ export class BascketManagementService {
     , User: null,
       TotalPrice:139
     };
+
+    this.buscketTotalPriceSubject=new BehaviorSubject<number>(this.TotalPrice);
+  }
+  get TotalPrice(): number
+  {
+    return this.Basket.TotalPrice;
   }
 
+  getBascketById(id:number):Observable<IBasket>{
+    return this.genericAPIHandler.getAll("/Basket").pipe(
+      map((APIResponseVM:APIResponseVM) =>{
+        return APIResponseVM.data;
+      })
+    );
+    //return this.httpClient.get<IBasket> (`${environment.APIURL}/Basket?UserId=${id}`);
+  }
+
+  createBascket(UserId:number):Observable<IBasket>{
+    var object:APIResponseVM ={
+      success:true,
+      data: JSON.stringify(this.Basket),
+      messages:["Post new Basket"]
+    }
+
+    return this.genericAPIHandler.post("/Basket", object  ).pipe(
+      map((APIResponseVM:APIResponseVM) =>{
+        return APIResponseVM.data;
+      })
+      );
+  }
 
   getTotalPrice(): Observable<number>
   {
-    return from([this.Basket.TotalPrice]);
+    return this.buscketTotalPriceSubject.asObservable();
   }
   getItemNumber(): Observable<number>
   {
-    return from([this.Basket.Items.length]);
+    if(this.Basket.Items==undefined)
+      return from([Number(0)]);
+    else
+       return from([this.Basket.Items?.length])
   }
   AddToCart(newItem:IBasketItem){
-    this.Basket.Items.push(newItem);
+    this.Basket.Items?.push(newItem);
     this.Basket.TotalPrice+= newItem.TotalPrice;
 
   }
   deicreamentItem(id:number){
-     var item =this.Basket.Items.find(prd=> prd.Product.Id==id)!;
+     var item =this.Basket.Items?.find(prd=> prd.Product.Id==id)!;
      if(item.ProductQuantity>1){
       item.ProductQuantity -=1;
       item.TotalPrice -=item.Product.Price;
@@ -51,7 +86,7 @@ export class BascketManagementService {
 
   }
    increamentItem(id:number){
-    var item =this.Basket.Items.find(prd=> prd.Product.Id==id)!;
+    var item =this.Basket.Items?.find(prd=> prd.Product.Id==id)!;
     if(item.ProductQuantity<item.Product.NumInStock){
       item.ProductQuantity +=1;
       item.TotalPrice +=item.Product.Price;
@@ -61,7 +96,7 @@ export class BascketManagementService {
 
   }
   changeItemQuantity(id:number, quantity:number){
-    var item =this.Basket.Items.find(prd=> prd.Product.Id==id)!;
+    var item =this.Basket.Items?.find(prd=> prd.Product.Id==id)!;
     if(quantity==0)
       this.RemoveItemById(id);
     else if(quantity<=item.Product.NumInStock){
@@ -80,14 +115,14 @@ export class BascketManagementService {
 
   }
   checkAvalibality(id:number){
-    var item =this.Basket.Items.find(prd=> prd.Product.Id==id)!;
+    var item =this.Basket.Items?.find(prd=> prd.Product.Id==id)!;
     if(item.ProductQuantity>item.Product.NumInStock)
     item.ProductQuantity=item.Product.NumInStock;
   }
   RemoveItemById(id:number){
-    var item =this.Basket.Items.find(prd=> prd.Product.Id==id)!;
+    var item =this.Basket.Items?.find(prd=> prd.Product.Id==id)!;
     this.Basket.TotalPrice-=item.TotalPrice;
-    this.Basket.Items.splice(this.Basket.Items.findIndex(prd=> prd.Product.Id==id),1);
+    this.Basket.Items?.splice(this.Basket.Items?.findIndex(prd=> prd.Product.Id==id),1);
   }
   clearBasket(){
     this.Basket.Id=0;

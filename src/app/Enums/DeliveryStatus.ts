@@ -1,5 +1,6 @@
 export enum DeliveryStatus {
-    Charged=0,
+    Pending=0,
     OnWay=1,
-    Delivered=2
+    Delivered=2,
+    Returned=3
   };

@@ -4,7 +4,7 @@ import { DeliveryStatus } from "../Enums/DeliveryStatus";
 
 export interface IOrder{
   Id:number;
-  Items:IBasketItem[],
+  Items:IBasketItem[]|null,
   TotalPrice:number,
   Address:string,
   Status:DeliveryStatus,

@@ -20,10 +20,9 @@ export class HeaderComponent implements OnInit {
     this.arrow="►";
     this.price=0;
     this.bascket=basketService.Basket;
-    // this.basketService.getTotalPrice().subscribe(_price=>{
-    //   alert(_price)
-    //   this.price=_price;
-    // });
+    //  this.basketService.getTotalPrice().subscribe(_price=>{
+    //    this.price=_price;
+    //  });
 
    }
 

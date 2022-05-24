@@ -18,7 +18,7 @@
   <div class="offcanvas__nav__option">
     <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
     <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket.Items.length}}</span></a>
+    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket.Items?.length}}</span></a>
     <div class="price">{{bascket.TotalPrice|currency}}</div>
   </div>
   <div id="mobile-menu-wrap">
@@ -116,7 +116,7 @@
         <div class="header__nav__option">
           <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
           <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket.Items.length}}</span></a>
+          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket.Items?.length}}</span></a>
           <div class="price">{{bascket.TotalPrice|currency}}</div>
         </div>
       </div>
