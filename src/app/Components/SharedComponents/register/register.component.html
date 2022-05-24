@@ -6,20 +6,54 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
                         <h2>Register</h2>
-                        <form action="#">
+                        <form #registerFrm="ngForm" (ngSubmit)="Register()">
                             <div class="group-input">
-                                <label for="username">Username or email address *</label>
-                                <input type="text" id="username">
+                                <label for="fullname">Full Name *</label>
+                                <input #fullNameInp="ngModel" type="text" id="fullname" name="fullname" [(ngModel)]="newUser.fullName" pattern="^[A-Za-z ]{8,50}$" required>
+                                <div class="alert alert-danger" [hidden]="fullNameInp.valid || fullNameInp.untouched">
+                                    <small *ngIf="fullNameInp.errors?.['required']">Full Name is Required!!</small>
+                                    <small *ngIf="fullNameInp.errors?.['pattern']">Full Name must contain alphabetic characters and spaces only and between 8 and 50 characters</small>
+                                </div>
                             </div>
                             <div class="group-input">
-                                <label for="pass">Password *</label>
-                                <input type="text" id="pass">
+                                <label for="username">Username *</label>
+                                <input #userNameInp="ngModel" type="text" id="username" name="username" [(ngModel)]="newUser.userName" pattern="^[A-Za-z]{8,16}$" required>
+                                <div class="alert alert-danger" [hidden]="userNameInp.valid || userNameInp.untouched">
+                                    <small *ngIf="userNameInp.errors?.['required']">User Name is Required!!</small>
+                                    <small *ngIf="userNameInp.errors?.['pattern']">Full Name must contain alphabetic characters only and between 8 and 16 characters</small>
+                                </div>
                             </div>
                             <div class="group-input">
-                                <label for="con-pass">Confirm Password *</label>
-                                <input type="text" id="con-pass">
+                                <label for="email">Email Address *</label>
+                                <input #emailInp="ngModel" type="email" id="email" name="email" [(ngModel)]="newUser.email" required>
+                                <div class="alert alert-danger" [hidden]="emailInp.valid || emailInp.untouched">
+                                    <small *ngIf="emailInp.errors?.['required']">Email Address is Required!!</small>
+                                </div>
                             </div>
-                            <button type="submit" class="site-btn register-btn">REGISTER</button>
+                            <div class="group-input">
+                                <label for="phonenumber">Phone Number *</label>
+                                <input #phoneInp="ngModel" type="password" id="phonenumber" name="phonenumber" [(ngModel)]="newUser.phoneNumber" pattern="^[0-9]{6,16}$" required>
+                                <div class="alert alert-danger" [hidden]="phoneInp.valid || phoneInp.untouched">
+                                    <small *ngIf="phoneInp.errors?.['required']">Phone Number is Required!!</small>
+                                    <small *ngIf="phoneInp.errors?.['pattern']">Phone Number Length must be between 6 and 16 Numbers</small>
+                                </div>
+                            </div>
+                            <div class="group-input">
+                                <label for="password">Password *</label>
+                                <input #passInp="ngModel" type="password" id="password" name="password" [(ngModel)]="newUser.password" required>
+                                <div class="alert alert-danger" [hidden]="passInp.valid || passInp.untouched">
+                                    <small *ngIf="passInp.errors?.['required']">Password is Required!!</small>
+                                </div>
+                            </div>
+                            <div class="group-input">
+                                <label for="confirmpassword">Confirm Password *</label>
+                                <input #confirmPassInp="ngModel" type="password" id="confirmpassword" name="confirmpassword" [(ngModel)]="confimPass" pattern="{{passInp.value}}" required>
+                                <div class="alert alert-danger" [hidden]="confirmPassInp.valid || confirmPassInp.untouched">
+                                    <small *ngIf="confirmPassInp.errors?.['required']">Please Confirm Your Password</small>
+                                    <small *ngIf="confirmPassInp.errors?.['pattern']">Does not Match Your Password</small>
+                                </div>
+                            </div>
+                            <button [disabled]="registerFrm.invalid" type="submit" class="site-btn register-btn">REGISTER</button>
                         </form>
                         <div class="switch-login">
                             <a routerLink="/Login" class="nav-link" class="or-login">Or Login</a>

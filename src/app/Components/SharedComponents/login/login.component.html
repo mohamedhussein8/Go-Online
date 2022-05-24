@@ -8,14 +8,20 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="login-form">
                         <h2>Login</h2>
-                        <form action="#">
+                        <form #loginFrm="ngForm" (ngSubmit)="Login()">
                             <div class="group-input">
-                                <label for="username">Username or email address *</label>
-                                <input type="text" id="username">
+                                <label for="username">Username or Email Address *</label>
+                                <input #accountInp="ngModel" type="text" id="username" name="account" [(ngModel)]="logingUser.User" required >
+                                <div class="alert alert-danger" [hidden]="accountInp.valid || accountInp.untouched">
+                                    <small *ngIf="accountInp.errors?.['required']">User Name or Email is Required!!</small>
+                                </div>
                             </div>
                             <div class="group-input">
                                 <label for="pass">Password *</label>
-                                <input type="text" id="pass">
+                                <input #passwordInp="ngModel" type="text" id="pass" name="pass" [(ngModel)]="logingUser.Password" required >
+                                <div class="alert alert-danger" [hidden]="passwordInp.valid || passwordInp.untouched">
+                                    <small *ngIf="passwordInp.errors?.['required']">Password is Required!!</small>
+                                </div>
                             </div>
                             <div class="group-input gi-check">
                                 <div class="gi-more">
@@ -29,7 +35,7 @@
                                     <a href="#" class="forget-pass">Forget your Password</a>
                                 </div>
                             </div>
-                            <button type="submit" class="site-btn login-btn">Sign In</button>
+                            <button [disabled]="loginFrm.invalid" type="submit" class="site-btn login-btn">Sign In</button>
                         </form>
                         <div class="switch-login">
                             <a routerLink="/Register" class="nav-link" class="or-login">Or Create An Account</a>
