@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-<<<<<<< HEAD
-
-import {HttpClientModule} from '@angular/common/http'
-=======
->>>>>>> d61346e3292312d47133a428b4d4556a67ece6c1
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/SharedComponents/header/header.component';
@@ -85,10 +80,6 @@ import {MatSortModule} from '@angular/material/sort';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-<<<<<<< HEAD
-    HttpClientModule
-
-=======
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -105,7 +96,6 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
->>>>>>> d61346e3292312d47133a428b4d4556a67ece6c1
   ],
   providers: [],
   bootstrap: [AppComponent]

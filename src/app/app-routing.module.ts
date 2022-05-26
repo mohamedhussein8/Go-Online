@@ -44,9 +44,9 @@ const routes: Routes = [
     },
     {path:'admin', component:AdminLayoutComponent,children:[
       {path:'', redirectTo:'home',pathMatch:'full'},
-      {path:'home',component:HomeAdminComponent },
-      {path:'product',component:ProductsDashboardComponent },
-      {path:'category', component:CategoryComponent}
+      {path:'home',component:HomeAdminComponent ,canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]} },
+      {path:'product',component:ProductsDashboardComponent, canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]} },
+      {path:'category', component:CategoryComponent , canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]}}
     ]}
 ];
 
