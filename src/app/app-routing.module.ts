@@ -22,13 +22,14 @@ import { AdminLayoutComponent } from './Components/Admin-Side/admin-layout/admin
 import { ProductsDashboardComponent } from './Components/Admin-Side/products-dashboard/products-dashboard.component';
 import { CategoryComponent } from './Components/Admin-Side/category/category.component';
 import { HomeAdminComponent } from './Components/Admin-Side/home-admin/home-admin.component';
+import { NotAuthGuard } from './Guards/not-auth.guard';
 
 
 const routes: Routes = [
   {path: '', component: MainLayoutComponentComponent, children:[
   {path: '', component: HomeComponent, pathMatch: 'full'},
-  {path:'Login', component:LoginComponent},
-  {path:'Register', component:RegisterComponent},
+  {path:'Login', component:LoginComponent, canActivate: [NotAuthGuard]},
+  {path:'Register', component:RegisterComponent, canActivate: [NotAuthGuard]},
   {path:'Home', component:HomeComponent},
   {path:'Shop', component:ShopComponent, canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.ClientRole]}},
   {path:'Shopping-Cart', component:ShoppingCartComponent},

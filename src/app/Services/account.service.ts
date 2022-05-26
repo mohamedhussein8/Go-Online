@@ -58,7 +58,7 @@ export class AccountService {
     let user: any = localStorage.getItem("User");
     user = JSON.parse(user);
     
-    return new AuthUserVM(user.fullName, user.userName, user.email, user.phoneNumber, user.roles);
+    return new AuthUserVM(user.fullName, user.userName, user.email, user.phoneNumber, user.roles, user.token, user.expires);
   }
 
   GetUserRoles(): string[] 

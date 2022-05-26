@@ -10,7 +10,7 @@
                         <h2>Login</h2>
                         <form #loginFrm="ngForm" (ngSubmit)="Login()">
                             <div class="group-input">
-                                <label for="username">Username or Email Address *</label>
+                                <label for="username">User name or Email Address *</label>
                                 <input #accountInp="ngModel" type="text" id="username" name="account" [(ngModel)]="logingUser.User" required >
                                 <div class="alert alert-danger" [hidden]="accountInp.valid || accountInp.untouched">
                                     <small *ngIf="accountInp.errors?.['required']">User Name or Email is Required!!</small>
