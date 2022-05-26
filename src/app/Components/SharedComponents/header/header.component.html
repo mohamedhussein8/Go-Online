@@ -3,7 +3,8 @@
 <div ngClass="{{offcanvasMenuWrapperClass}}">
   <div class="offcanvas__option">
     <div class="offcanvas__links">
-      <a routerLink="/Login" routerLinkActive="active" class="nav-link">Sign in</a>
+      <a routerLink="/Login" routerLinkActive="active" *ngIf="!isUserLogged" class="nav-link">Sign in</a>
+      <a *ngIf="isUserLogged" (click)="LogOut()" style="cursor: pointer;" class="nav-link">Logout</a>
       <a href="#">FAQs</a>
     </div>
     <div class="offcanvas__top__hover">
@@ -78,7 +79,8 @@
           <div class="header__top__right">
             <div class="header__top__links">
               <a routerLink="/"  class="nav-link text-danger" >Be a Vendor</a>
-              <a routerLink="/Login" class="nav-link" >Sign in</a>
+              <a routerLink="/Login" *ngIf="!isUserLogged" class="nav-link" >Sign in</a>
+              <a *ngIf="isUserLogged" (click)="LogOut()" class="nav-link" style="cursor: pointer;" >Logout</a>
               <a href="#">FAQs</a>
             </div>
             <div class="header__top__hover">

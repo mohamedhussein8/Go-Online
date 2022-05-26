@@ -39,6 +39,5 @@ export class OrdersManagementService {
       retry(3),
       catchError(this.errorHandlingservice.handleError)
     );
-
   }
 }

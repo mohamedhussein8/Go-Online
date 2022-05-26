@@ -22,13 +22,14 @@ import { AdminLayoutComponent } from './Components/Admin-Side/admin-layout/admin
 import { ProductsDashboardComponent } from './Components/Admin-Side/products-dashboard/products-dashboard.component';
 import { CategoryComponent } from './Components/Admin-Side/category/category.component';
 import { HomeAdminComponent } from './Components/Admin-Side/home-admin/home-admin.component';
+import { NotAuthGuard } from './Guards/not-auth.guard';
 
 
 const routes: Routes = [
   {path: '', component: MainLayoutComponentComponent, children:[
   {path: '', component: HomeComponent, pathMatch: 'full'},
-  {path:'Login', component:LoginComponent},
-  {path:'Register', component:RegisterComponent},
+  {path:'Login', component:LoginComponent, canActivate: [NotAuthGuard]},
+  {path:'Register', component:RegisterComponent, canActivate: [NotAuthGuard]},
   {path:'Home', component:HomeComponent},
   {path:'Shop', component:ShopComponent},
   {path:'Shopping-Cart', component:ShoppingCartComponent},
@@ -44,9 +45,9 @@ const routes: Routes = [
     },
     {path:'admin', component:AdminLayoutComponent,children:[
       {path:'', redirectTo:'home',pathMatch:'full'},
-      {path:'home',component:HomeAdminComponent },
-      {path:'product',component:ProductsDashboardComponent },
-      {path:'category', component:CategoryComponent}
+      {path:'home',component:HomeAdminComponent ,canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]} },
+      {path:'product',component:ProductsDashboardComponent, canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]} },
+      {path:'category', component:CategoryComponent , canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]}}
     ]}
 ];
 
