@@ -4,6 +4,7 @@
   <div class="offcanvas__option">
     <div class="offcanvas__links">
       <a routerLink="/Login" routerLinkActive="active" *ngIf="!isUserLogged" class="nav-link">Sign in</a>
+      <a *ngIf="isUserLogged"  style="cursor: pointer;" class="nav-link">H{{userName}}</a>
       <a *ngIf="isUserLogged" (click)="LogOut()" style="cursor: pointer;" class="nav-link">Logout</a>
       <a href="#">FAQs</a>
     </div>
@@ -19,8 +20,8 @@
   <div class="offcanvas__nav__option">
     <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
     <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket?.items?.length}}</span></a>
-    <div class="price">{{totalPrice|currency}}</div>
+    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{count}}</span></a>
+    <div class="price"><span *ngIf="isUserLogged">{{price|currency}}</span></div>
   </div>
   <div id="mobile-menu-wrap">
 
@@ -118,8 +119,8 @@
         <div class="header__nav__option">
           <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
           <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket?.items?.length}}</span></a>
-          <div class="price">{{totalPrice|currency}}</div>
+          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{count}}</span></a>
+          <div class="price"><span *ngIf="isUserLogged">{{price|currency}} </span></div>
         </div>
       </div>
     </div>

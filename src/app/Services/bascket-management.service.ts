@@ -19,12 +19,14 @@ export class BascketManagementService {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-       // ,Authorization: accountService.GetToken()
+        ,Authorization: accountService.GetToken()
       })
     };
+    if(this.accountService.IsUserLogged()){
      this.getBascketById().subscribe(data =>{
       this.basket=data;
     })
+  }
 
 
   }

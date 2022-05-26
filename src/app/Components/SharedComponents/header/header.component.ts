@@ -12,34 +12,38 @@ export class HeaderComponent implements OnInit, DoCheck {
   arrow:string;
   offcanvasMenuOverlayClass:string;
   offcanvasMenuWrapperClass:string;
-  price:number;
-  bascket!:IBasket;
+  price:number=0;
+  bascket:IBasket|null=null;
+  count:number|undefined=0;
   isUserLogged: Boolean;
+  userName:string="";
 
   constructor(public basketService:BascketManagementService, private accountService: AccountService) {
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay";
     this.offcanvasMenuWrapperClass="offcanvas-menu-wrapper";
     this.arrow="►";
-    this.price=0;
-    basketService.getBascketById().subscribe(data=>{
-      data.items?.forEach(element => {
-        this.totalPrice= element.price* element.quantity;
-      });
-      this.bascket=data;
-    });
-
     this.isUserLogged = false
-    //  this.basketService.getTotalPrice().subscribe(_price=>{
-    //    this.price=_price;
-    //  });
+    if(this.isUserLogged){
+      basketService.getBascketById().subscribe(data=>{
+        this.price=data.totalPrice;
+        this.count=data.items?.length;
+      });
+
+    }
+
 
    }
   ngDoCheck(): void {
     this.isUserLogged = this.accountService.IsUserLogged();
+    this.userName=this.accountService.GetUser().userName;
+
   }
 
   ngOnInit(): void {
     this.isUserLogged = this.accountService.IsUserLogged();
+    console.log(this.accountService.GetUser());
+    this.userName=this.accountService.GetUser().userName;
+
   }
   openMenu(){
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay active";
@@ -55,10 +59,11 @@ export class HeaderComponent implements OnInit, DoCheck {
     else
       this.arrow="►";
   }
-  
+
   LogOut(): void
   {
     this.accountService.Logout();
+    this.userName="";
   }
 
 }
