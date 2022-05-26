@@ -51,7 +51,7 @@ export class OrdersManagementService {
       Items:this.basketService.Basket.Items,
       TotalPrice:this.basketService.Basket.TotalPrice,
       Address:"Cairo",
-      Status:DeliveryStatus.Charged,
+      Status:DeliveryStatus.Pending,
       DeliveryDate:new Date().getTime().toString(),
       paymentMethod:PaymentMethod.CashOnDelivery
     };
