@@ -12,9 +12,9 @@ import { IBasketItem } from 'src/app/Models/IBasketItem';
 })
 export class ProductDetailsComponent implements OnInit {
   currPrdID: number=0;
-  item: IProduct;
+  item!: IProduct;
   quantity:number;
-  ProdList:IProduct[];
+  ProdList:IProduct[]=[];
 
   constructor(private activatedRoute: ActivatedRoute,
               productService:ProductsManagementService,
@@ -22,17 +22,20 @@ export class ProductDetailsComponent implements OnInit {
 
 
      this.quantity=2;
-     this.item=productService.getProductById(this.currPrdID);
-     this.ProdList=productService.getFirstFourItems();
+     productService.getProductById(this.currPrdID).subscribe(data=>{
+      this.item=data;
+     });
+     productService.getFirstFourItems().subscribe(data=>{
+      this.ProdList=data;
+     });
      this.activatedRoute.paramMap.subscribe((paramMap)=>{
         this.currPrdID= Number(paramMap.get('id'))
-        this.item= productService.getProductById(this.currPrdID);
     });
 
 
    }
    editRate(rate:number){
-    this.item.Rate=rate;
+    this.item.rate=rate;
     console.log(rate);
 
   }
@@ -40,13 +43,17 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   AddToCart(){
-    var newItem:IBasketItem={
-      BasketId:this.basketService.Basket.Id,
-      TotalPrice:this.quantity*this.item.Price,
-      ProductQuantity:this.quantity,
-      Product:this.item
+    console.log("hi");
+    var basketItem:IBasketItem={
+      id:this.item.id.toString(),
+      price:this.item.price,
+      quantity:this.quantity,
+      numberInStock:this.item.numberInStock,
+      productName:this.item.name,
+      productImage:this.item.imagePath
     }
-    this.basketService.AddToCart(newItem);
+
+    this.basketService.AddToCart(basketItem);
 
   }
 

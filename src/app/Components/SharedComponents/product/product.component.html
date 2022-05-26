@@ -1,25 +1,26 @@
 <div class="col-12">
   <div class="product__item">
-    <div class="product__item__pic set-bg" style="background-image:url('{{item.Image}}')">
-      <span class="label" [hidden]="!item.IsNew">New</span>
+    <div class="product__item__pic set-bg" style="background-image:url('{{item.imagePath}}')">
+      <span class="label" [hidden]="!item.isNew">New</span>
       <ul class="product__hover">
         <li><a href="#"><img src="assets/img/icon/heart.png" alt=""></a></li>
         <li><a href="#"><img src="assets/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-        <li><a routerLink="/ProductDetails/{{item.Id}}"><img src="assets/img/icon/search.png" alt=""></a></li>
+        <li><a routerLink="/ProductDetails/{{item.id}}"><img src="assets/img/icon/search.png" alt=""></a></li>
       </ul>
     </div>
     <div class="product__item__text">
-      <h6>{{item.Name}}</h6>
-      <a routerLink="/Shopping-Cart" (click)="AddToCart()" class="add-cart">+ Add To Cart</a>
+      <h6>{{item.name}}</h6>
+      <a (click)="AddToCart()" style="cursor: pointer;" class="add-cart">+ Add To Cart</a>
+      <!-- <a routerLink="/Shopping-Cart" (click)="AddToCart()" class="add-cart">+ Add To Cart</a> -->
       <div class="rating">
         <ng-container *ngFor="let number of [].constructor(5); index as i">
           <button class="btn px-0 mx-0" style="outline: none; box-shadow:none;" (click)="editRate(i)"><i
-            [ngClass]="{'fa-star':i<=item.Rate, 'fa fa-star-o':i>item.Rate ,'goldRate':i<=item.Rate, 'fa':true}"></i>
+            [ngClass]="{'fa-star':i<=item.rate, 'fa fa-star-o':i>item.rate ,'goldRate':i<=item.rate, 'fa':true}"></i>
           </button>
         </ng-container>
       </div>
 
-      <h5>{{item.Price|currency}}</h5>
+      <h5>{{item.price|currency}}</h5>
       <div class="product__color__select">
         <label class="" for="pc-1" (click)="ChangeColorSelection($event)">
           <input type="radio" id="pc-1">

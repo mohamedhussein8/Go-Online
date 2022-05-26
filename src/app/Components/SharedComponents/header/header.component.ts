@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   offcanvasMenuOverlayClass:string;
   offcanvasMenuWrapperClass:string;
   price:number;
-  bascket:IBasket;
+  bascket!:IBasket;
   isUserLogged: Boolean;
 
   constructor(public basketService:BascketManagementService, private accountService: AccountService) {
@@ -21,7 +21,13 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.offcanvasMenuWrapperClass="offcanvas-menu-wrapper";
     this.arrow="►";
     this.price=0;
-    this.bascket=basketService.Basket;
+    basketService.getBascketById().subscribe(data=>{
+      data.items?.forEach(element => {
+        this.totalPrice= element.price* element.quantity;
+      });
+      this.bascket=data;
+    });
+
     this.isUserLogged = false
     //  this.basketService.getTotalPrice().subscribe(_price=>{
     //    this.price=_price;

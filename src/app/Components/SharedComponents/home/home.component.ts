@@ -8,7 +8,7 @@ import { ProductsManagementService } from 'src/app/Services/products-management.
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  ProdList: IProduct[];
+  ProdList!: IProduct[];
   days: number;
   minutes: number; //January is 0!
   hours: number;
@@ -18,14 +18,18 @@ export class HomeComponent implements OnInit {
   timeleft: number;
   id: any;
   constructor(private productService:ProductsManagementService) {
-    this.ProdList= this.productService.getFirstEightItems();
+    this.productService.getFirstEightItems().subscribe(data=>{
+
+      this.ProdList= data;
+
+    });
     this.days = 0;
     this.minutes = 0; //January is 0!
     this.hours = 0;
     this.seconds = 0;
     this.timeleft = 0;
     this.now = new Date().getTime();
-    this.countDownDate = new Date("May 23, 2022 16:37:52").getTime();
+    this.countDownDate = new Date("May 31, 2022 16:37:52").getTime();
 
     this.id = setInterval(() => {
       this.now = new Date().getTime(),

@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'Login', component:LoginComponent, canActivate: [NotAuthGuard]},
   {path:'Register', component:RegisterComponent, canActivate: [NotAuthGuard]},
   {path:'Home', component:HomeComponent},
-  {path:'Shop', component:ShopComponent, canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.ClientRole]}},
+  {path:'Shop', component:ShopComponent},
   {path:'Shopping-Cart', component:ShoppingCartComponent},
   {path:'CheckOut', component:CheckOutComponent},
   {path:'ProductDetails/:id', component:ProductDetailsComponent},

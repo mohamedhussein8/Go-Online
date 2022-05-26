@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IBasket } from 'src/app/Models/IBasket';
 import { BascketManagementService } from 'src/app/Services/bascket-management.service';
-import { OrdersManagementService } from 'src/app/Services/orders-management.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,26 +9,36 @@ import { OrdersManagementService } from 'src/app/Services/orders-management.serv
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  Basket:IBasket;
+  Basket!:IBasket;
 
   constructor(private bascketService:BascketManagementService) {
-    this.Basket=bascketService.Basket;
    }
 
   ngOnInit(): void {
+    this.bascketService.getBascketById().subscribe(data=>{
+      this.Basket=data;
+    });
   }
-  deicreament(id:number){
-    this.bascketService.deicreamentItem(id);
-  }
-  increament(id:number){
-    this.bascketService.increamentItem(id);
-  }
-  changeItemQuantity(id:number, quantity:number){
-    this.bascketService.changeItemQuantity(id, quantity);
-  }
-  RemoveItem(id:number){
-    this.bascketService.RemoveItemById(id);
+  deicreament(id:string){
+    this.bascketService.deicreamentItem(id).subscribe( data=>{
+        this.Basket=data;
+      });
+    }
+
+  increament(id:string){
+    this.bascketService.increamentItem(id).subscribe(data=>{
+      this.Basket=data;
+    });
   }
 
-
+  changeItemQuantity(id:string, quantity:number){
+    this.bascketService.changeItemQuantity(id, quantity).subscribe(data=>{
+      this.Basket=data;
+    });
+  }
+  RemoveItem(id:string){
+    this.bascketService.RemoveItemById(id).subscribe(data=>{
+      this.Basket=data;
+    });
+  }
 }

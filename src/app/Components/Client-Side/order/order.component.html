@@ -1,41 +1,41 @@
  <!-- Breadcrumb Section Begin -->
- <app-bread-crumb *ngIf="isDetails"  app-bread-crumb="Orders/{{order.Id}}"></app-bread-crumb>
+ <app-bread-crumb *ngIf="isDetails"  app-bread-crumb="Orders/{{order.id}}"></app-bread-crumb>
  <!-- Breadcrumb Section End -->
 
  <table  class="my-3">
   <thead>
       <tr>
           <th class="product__cart__item__text" >
-            <h6><span style="text-decoration:underline;">Order Id:</span> {{order.Id}}12345465</h6>
-            <h6><span style="text-decoration:underline;">Delivery Date:</span> {{order.DeliveryDate}}</h6>
+            <h6><span style="text-decoration:underline;">Order Id:</span> {{order.id}}12345465</h6>
+            <h6><span style="text-decoration:underline;">Delivery Date:</span> {{order.deliveryDate}}</h6>
           </th>
           <th class="product__cart__item__text">
             <h6><span style="text-decoration:underline;">Status:</span> {{status}}</h6>
           </th>
           <th class="product__cart__item__text">
-            <h6> <span style="text-decoration:underline;"> TotalPrice:</span> {{order.TotalPrice|currency}}</h6>
+            <h6> <span style="text-decoration:underline;"> TotalPrice:</span> {{order.totalPrice|currency}}</h6>
           </th>
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let item of order.Items; index as ItemIndex">
+      <tr *ngFor="let item of order.items; index as ItemIndex">
           <td class="d-flex justify-content-between" scope="row" >
             <div class="item-data product__cart__item d-flex align-items-center">
               <div class="product__cart__item__pic">
-                  <img src="{{item.Product.Image}}" style="width:150px;" alt="">
+                  <img src="{{item.productImage}}" style="width:150px;" alt="">
               </div>
               <div class="product__cart__item__text">
-                  <h6>Order Id:{{item.Product.Id}}12345465</h6>
-                  <h5>Product: {{item.Product.Name}}</h5>
-                  <h6 *ngIf="item.ProductQuantity>0">Quantity: {{item.ProductQuantity}}</h6>
-                  <h6>Sold By: {{item.Product.Provider?.Name}}</h6>
+                  <h6>Order Id:{{item.id}}12345465</h6>
+                  <h5>Product: {{item.productName}}</h5>
+                  <h6 *ngIf="item.quantity>0">Quantity: {{item.quantity}}</h6>
+                  <!--<h6>Sold By: {{item.provider?.Name}}</h6>-->
                   <h5><a routerLink="/order" class="btn btn-warning"><i class="fa fa-solid fa-repeat mr-1"></i>Buy it again</a></h5>
 
               </div>
             </div>
           <div *ngIf="ItemIndex==0"  >
-            <h5 *ngIf="!isDetails"><a routerLink="/Order/{{order.Id}}" class="primary-btn mb-2">Check Order</a></h5>
-            <h5><a routerLink="/Order/{{order.Id}}" class="btn btn-warning">Cancel Order</a></h5>
+            <h5 *ngIf="!isDetails"><a routerLink="/Order/{{order.id}}" class="primary-btn mb-2">Check Order</a></h5>
+            <h5><a routerLink="/Order/{{order.id}}" class="btn btn-warning">Cancel Order</a></h5>
             </div>
           </td>
       </tr>

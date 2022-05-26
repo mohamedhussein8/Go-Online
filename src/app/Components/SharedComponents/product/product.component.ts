@@ -24,18 +24,20 @@ export class ProductComponent implements OnInit {
 
   }
   editRate(rate:number){
-    this.item.Rate=rate;
-    console.log(rate);
+    this.item.rate=rate;
 
   }
   AddToCart(){
     var newItem:IBasketItem={
-      BasketId:this.basketService.Basket.Id,
-      TotalPrice:this.item.Price,
-      ProductQuantity:1,
-      Product:this.item
+      id:this.item.id.toString(),
+      price:this.item.price,
+      quantity:1,
+      numberInStock:this.item.numberInStock,
+      productName:this.item.name,
+      productImage:this.item.imagePath
     }
-    this.basketService.AddToCart(newItem);
+
+    this.basketService.AddToCart(newItem).subscribe();
 
   }
 
