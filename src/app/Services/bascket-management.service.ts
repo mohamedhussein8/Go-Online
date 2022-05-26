@@ -49,8 +49,7 @@ export class BascketManagementService {
      var item =this.basket.items?.find(prd=> prd.id==id)!;
      if(item.quantity>1){
       item.quantity -=1;
-      this.basket.totalPrice-=item.price;
-      return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`, this.basket, this.httpOptions)
+      return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`, item, this.httpOptions)
       .pipe(
         retry(3),
         catchError(this.errorHandlingservice.handleError)
@@ -64,9 +63,8 @@ export class BascketManagementService {
     var item =this.basket.items?.find(prd=> prd.id==id)!;
     if(item.quantity<item.numberInStock){
       item.quantity +=1;
-      this.basket.totalPrice+=item.price;
     }
-    return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`,  this.basket, this.httpOptions)
+    return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`,  item, this.httpOptions)
      .pipe(
        retry(3),
        catchError(this.errorHandlingservice.handleError)
@@ -78,10 +76,8 @@ export class BascketManagementService {
     if(quantity==0)
       return this.RemoveItemById(id);
     else if(quantity<=item.numberInStock){
-      this.basket.totalPrice-=item.price* item.quantity;
       item.quantity = quantity;
-      this.basket.totalPrice+=item.price* item.quantity;
-      return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`, this.basket, this.httpOptions)
+      return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`, item, this.httpOptions)
       .pipe(
         retry(3),
         catchError(this.errorHandlingservice.handleError)
@@ -90,9 +86,7 @@ export class BascketManagementService {
 
      }
      else{
-       this.basket.totalPrice-=item.price *item.quantity;
        item.quantity=item.numberInStock;
-       this.basket.totalPrice+=item.price *item.quantity;
        return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`, this.basket, this.httpOptions)
        .pipe(
          retry(3),
@@ -109,8 +103,8 @@ export class BascketManagementService {
     // if(item.ProductQuantity>item.Product.numInStock)
     // item.ProductQuantity=item.Product.numInStock;
   }
-  RemoveItemById(id:string):Observable<IBasket>{
-    return this.httpClient.put<IBasket>(`${environment.APIURL}/Basket/${id}`, this.httpOptions)
+  RemoveItemById(id:string){
+    return this.httpClient.delete<IBasket>(`${environment.APIURL}/Basket/${id}`, this.httpOptions)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)

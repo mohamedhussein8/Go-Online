@@ -7,6 +7,7 @@ import { IOrder } from '../Models/IOrder';
 import { BascketManagementService } from './bascket-management.service';
 import { BehaviorSubject, catchError, from, map, Observable, retry, throwError } from 'rxjs';
 import { ErrorHanlingManagementService } from './error-hanling-management.service';
+import { checkOutVM } from '../ViewModels/checkOutVM';
 
 
 @Injectable({
@@ -23,17 +24,21 @@ export class OrdersManagementService {
         retry(3),
         catchError(this.errorHandlingservice.handleError)
       );
-
   }
-  getOrders():Observable<IOrder[]>{
-    return this.httpClient.get<IOrder[]>(`${environment.APIURL}/Orders`)
+
+  getOrders(userEmail:string):Observable<IOrder[]>{
+    return this.httpClient.get<IOrder[]>(`${environment.APIURL}/Orders/${userEmail}`)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)
     );
   }
-  placeOrder(){
-
+  placeOrder(userdata:checkOutVM){
+    return this.httpClient.post(`${environment.APIURL}/Orders`,checkOutVM)
+    .pipe(
+      retry(3),
+      catchError(this.errorHandlingservice.handleError)
+    );
 
   }
 }

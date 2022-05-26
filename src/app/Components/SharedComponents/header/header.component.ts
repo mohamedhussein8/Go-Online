@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   offcanvasMenuWrapperClass:string;
   price:number;
   bascket!:IBasket;
+  totalPrice:number=0;
 
   constructor(public basketService:BascketManagementService) {
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay";
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.price=0;
     basketService.getBascketById().subscribe(data=>{
       data.items?.forEach(element => {
-        this.bascket.totalPrice= element.price* element.quantity;
+        this.totalPrice= element.price* element.quantity;
       });
       this.bascket=data;
     });

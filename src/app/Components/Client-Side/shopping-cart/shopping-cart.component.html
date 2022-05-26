@@ -69,7 +69,8 @@
                         <ul>
                           <li>Subtotal <span>{{Basket?.totalPrice|currency}}</span></li>
                           <li>Shipping and Delivery <span>{{20|currency}}</span></li>
-                          <li>Total <span>{{Basket?.totalPrice?? 0|currency}}20 </span></li>
+                          <li *ngIf="Basket?.totalPrice!=0"> Total <span>{{Basket?.totalPrice?? 0|currency}} </span></li>
+                          <li *ngIf="Basket?.totalPrice==0">Total <span>{{Basket?.totalPrice?? 0|currency}} </span></li>
                         </ul>
                         <a routerLink="/CheckOut" class="primary-btn">Proceed to checkout</a>
                     </div>
