@@ -1,8 +1,8 @@
+import { IProduct } from "./IProduct";
 import { ISubCategory } from "./ISubCategory";
 
 export interface ICategory {
-  Id:number;
-  Name:String;
-  Description:String;
-  SubCategories: ISubCategory[];
+  id:number;
+  name:String;
+  products: IProduct[];
 }

@@ -12,7 +12,7 @@ export class CheckOutComponent implements OnInit {
   order:IBasket;
   constructor(private bascketService:BascketManagementService,
     private orderService:OrdersManagementService) {
-    this.order=bascketService.Basket;
+    this.order=bascketService.basket;
   }
 
   ngOnInit(): void {

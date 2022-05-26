@@ -12,17 +12,20 @@ export class HeaderComponent implements OnInit {
   offcanvasMenuOverlayClass:string;
   offcanvasMenuWrapperClass:string;
   price:number;
-  bascket:IBasket;
+  bascket!:IBasket;
 
   constructor(public basketService:BascketManagementService) {
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay";
     this.offcanvasMenuWrapperClass="offcanvas-menu-wrapper";
     this.arrow="►";
     this.price=0;
-    this.bascket=basketService.Basket;
-    //  this.basketService.getTotalPrice().subscribe(_price=>{
-    //    this.price=_price;
-    //  });
+    basketService.getBascketById().subscribe(data=>{
+      data.items?.forEach(element => {
+        this.bascket.totalPrice= element.price* element.quantity;
+      });
+      this.bascket=data;
+    });
+
 
    }
 

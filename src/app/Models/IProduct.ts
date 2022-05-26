@@ -3,14 +3,14 @@ import { IUser } from "./IUser";
 import { ISubCategory } from "./ISubCategory";
 
 export interface IProduct {
-  Id:number;
-  Name:string;
-  Description:string;
-  Price:number,
-  Image:string,
-  NumInStock:number,
-  Category:ICategory|null,
-  Provider: IUser|null,
-  IsNew:boolean,
-  Rate:number
+  id:number;
+  name:string;
+  description:string;
+  price:number,
+  imagePath:string,
+  numberInStock:number,
+  category:ICategory|null,
+  provider: IUser|null,
+  isNew:boolean,
+  rate:number
 }

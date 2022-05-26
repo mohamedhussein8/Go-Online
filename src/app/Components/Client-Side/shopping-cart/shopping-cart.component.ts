@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IBasket } from 'src/app/Models/IBasket';
 import { BascketManagementService } from 'src/app/Services/bascket-management.service';
-import { OrdersManagementService } from 'src/app/Services/orders-management.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,24 +9,32 @@ import { OrdersManagementService } from 'src/app/Services/orders-management.serv
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  Basket:IBasket;
+  Basket!:IBasket;
 
   constructor(private bascketService:BascketManagementService) {
-    this.Basket=bascketService.Basket;
+    this.bascketService.getBascketById().subscribe(data=>{
+      data.items?.forEach(element => {
+        data.totalPrice= element.price* element.quantity;
+      });
+      this.Basket=data;
+    });
+   // data.items?.forEach(element => {
+     // this.bascket.totalPrice= element.price* element.quantity;
+    //});
    }
 
   ngOnInit(): void {
   }
-  deicreament(id:number){
+  deicreament(id:string){
     this.bascketService.deicreamentItem(id);
   }
-  increament(id:number){
+  increament(id:string){
     this.bascketService.increamentItem(id);
   }
-  changeItemQuantity(id:number, quantity:number){
+  changeItemQuantity(id:string, quantity:number){
     this.bascketService.changeItemQuantity(id, quantity);
   }
-  RemoveItem(id:number){
+  RemoveItem(id:string){
     this.bascketService.RemoveItemById(id);
   }
 

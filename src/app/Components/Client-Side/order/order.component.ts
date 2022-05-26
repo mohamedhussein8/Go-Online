@@ -22,8 +22,11 @@ export class OrderComponent implements OnInit {
       if(paramMap.get('id')){
         this.isDetails=true;
       }
-      this.order= orderService.getOrderById(Number(paramMap.get('id')));
-      this.status=DeliveryStatus[this.order?.Status].toString();
+       orderService.getOrderById(Number(paramMap.get('id'))).subscribe(data=>
+        {
+          this.order=data;
+        });
+      this.status=DeliveryStatus[this.order?.status].toString();
 
   });
    }

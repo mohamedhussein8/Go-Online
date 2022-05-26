@@ -9,10 +9,12 @@ import { OrdersManagementService } from 'src/app/Services/orders-management.serv
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  orders:IOrder[];
+  orders!:IOrder[];
 
   constructor(private ordersService:OrdersManagementService) {
-    this.orders=ordersService.OrderList;
+  ordersService.getOrders().subscribe(data=>{
+    this.orders=data;
+    })
    }
 
 
