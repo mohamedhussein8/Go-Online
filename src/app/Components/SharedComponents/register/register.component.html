@@ -7,6 +7,9 @@
                     <div class="register-form">
                         <h2>Register</h2>
                         <form #registerFrm="ngForm" (ngSubmit)="Register()">
+                            <div class="alert alert-danger" *ngIf="serverError">
+                                <small>{{errorMessage}}</small>
+                            </div>
                             <div class="group-input">
                                 <label for="fullname">Full Name *</label>
                                 <input #fullNameInp="ngModel" type="text" id="fullname" name="fullname" [(ngModel)]="newUser.fullName" pattern="^[A-Za-z ]{8,50}$" required>
