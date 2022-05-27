@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         if(userRoles.some( i => i === ConstantRoles.AdminRole))
           this.router.navigate(['/admin']);
 
+          else
         this.router.navigate(['/Home']);
     });
   }
