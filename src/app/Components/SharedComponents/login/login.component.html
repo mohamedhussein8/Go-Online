@@ -9,6 +9,9 @@
                     <div class="login-form">
                         <h2>Login</h2>
                         <form #loginFrm="ngForm" (ngSubmit)="Login()">
+                            <div class="alert alert-danger" *ngIf="serverError">
+                                <small>{{errorMessage}}</small>
+                            </div>
                             <div class="group-input">
                                 <label for="username">User name or Email Address *</label>
                                 <input #accountInp="ngModel" type="text" id="username" name="account" [(ngModel)]="logingUser.User" required >
@@ -21,18 +24,6 @@
                                 <input #passwordInp="ngModel" type="password" id="pass" name="pass" [(ngModel)]="logingUser.Password" required >
                                 <div class="alert alert-danger" [hidden]="passwordInp.valid || passwordInp.untouched">
                                     <small *ngIf="passwordInp.errors?.['required']">Password is Required!!</small>
-                                </div>
-                            </div>
-                            <div class="group-input gi-check">
-                                <div class="gi-more">
-                                    <div class="checkout__input__checkbox">
-                                        <label for="save-pass">
-                                            Save Password
-                                            <input type="checkbox" id="save-pass">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <a href="#" class="forget-pass">Forget your Password</a>
                                 </div>
                             </div>
                             <button [disabled]="loginFrm.invalid" type="submit" class="site-btn login-btn">Sign In</button>
