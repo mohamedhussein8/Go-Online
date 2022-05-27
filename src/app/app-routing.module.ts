@@ -33,14 +33,14 @@ const routes: Routes = [
   {path:'Home', component:HomeComponent},
   {path:'Shop', component:ShopComponent},
   {path:'Shopping-Cart', component:ShoppingCartComponent},
-  {path:'CheckOut', component:CheckOutComponent},
+  {path:'CheckOut', component:CheckOutComponent,   canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.ClientRole]} },
   {path:'ProductDetails/:id', component:ProductDetailsComponent},
   {path:'Blog', component:BlogComponent},
   {path:'Contact', component:ContactComponent},
   {path:'AboutUs', component:AboutUsComponent},
   {path:'Blog-Details', component:BlogDetailsComponent},
-  {path:'Orders', component:OrdersComponent},
-  {path:'Order/:id', component:OrderComponent}
+  {path:'Orders', component:OrdersComponent, canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.ClientRole]} },
+  {path:'Order/:id', component:OrderComponent,  canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.ClientRole]} }
   ]
     },
     {path:'admin', component:AdminLayoutComponent,children:[

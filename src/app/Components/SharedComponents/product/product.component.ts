@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IBasketItem } from 'src/app/Models/IBasketItem';
 import { IProduct } from 'src/app/Models/IProduct';
+import { AccountService } from 'src/app/Services/account.service';
 import { BascketManagementService } from 'src/app/Services/bascket-management.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ProductComponent implements OnInit {
   @Input('app-product') item!:IProduct;
 
 
-  constructor(private basketService:BascketManagementService) {
+  constructor(private basketService:BascketManagementService, private accountService:AccountService) {
    }
 
   ngOnInit(): void {
@@ -36,8 +37,8 @@ export class ProductComponent implements OnInit {
       productName:this.item.name,
       productImage:this.item.imagePath
     }
-
-    this.basketService.AddToCart(newItem).subscribe();
+    if(this.accountService.IsUserLogged())
+       this.basketService.AddToCart(newItem).subscribe();
 
   }
 
