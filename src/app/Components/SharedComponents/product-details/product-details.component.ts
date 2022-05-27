@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   quantity:number;
 
   constructor(private activatedRoute: ActivatedRoute,
-              productService:ProductsManagementService,
+              private productService:ProductsManagementService,
               private basketService:BascketManagementService,
               private router:Router,
               private accountService:AccountService) {
@@ -37,7 +37,9 @@ export class ProductDetailsComponent implements OnInit {
 
    }
    editRate(rate:number){
-    this.item.rate=rate;
+    this.productService.editProductRate(this.item.id, rate).subscribe(data=>{
+      this.item.rate=(data.rate);
+    });
 
   }
 
