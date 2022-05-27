@@ -14,7 +14,7 @@ export class CategoryManagementService {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-        ,Authorization: accountService.GetToken()
+       // ,Authorization: accountService.GetToken()
       })
     };
    }

@@ -12,8 +12,10 @@
   <div class="offcanvas__nav__option">
     <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
     <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{this.bascket?.items?.count}</span></a>
-    <div class="price"><span *ngIf="isUserLogged">{{ this.bascket?.totalPrice|currency}}</span></div>
+    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">0</span></a>
+    <!-- <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{this.bascket?.items?.length}}</span></a> -->
+    <!-- <div class="price"><span *ngIf="isUserLogged">{{ this.bascket?.totalPrice|currency}}</span></div> -->
+    <div class="price"><span *ngIf="isUserLogged">{{ 0|currency}}</span></div>
   </div>
   <div id="mobile-menu-wrap">
 
@@ -104,8 +106,11 @@
         <div class="header__nav__option">
           <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
           <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{this.bascket?.items?.length}}</span></a>
-          <div class="price"><span *ngIf="isUserLogged">{{this.bascket?.totalPrice|currency}} </span></div>
+          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">0</span></a>
+          <div class="price"><span *ngIf="isUserLogged">0.0</span></div>
+
+          <!-- <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{this.bascket?.items?.length}}</span></a>
+          <div class="price"><span *ngIf="isUserLogged">{{this.bascket?.totalPrice|currency}} </span></div> -->
         </div>
       </div>
     </div>

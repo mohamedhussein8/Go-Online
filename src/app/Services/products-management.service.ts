@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 import { AccountService } from './account.service';
 import { productPagingVM } from '../ViewModels/productPagingVM';
 import { getPagingVM } from '../ViewModels/getPagingVM';
-import { ICategory } from '../Models/ICategory';
 
 
 @Injectable({
@@ -16,11 +15,11 @@ import { ICategory } from '../Models/ICategory';
 export class ProductsManagementService {
   httpOptions
   constructor(private httpClient: HttpClient,
-    private errorHandlingservice: ErrorHanlingManagementService, accountService:AccountService) {
+    private errorHandlingservice: ErrorHanlingManagementService) {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
-          ,Authorization: accountService.GetToken()
+          //,Authorization: accountService.GetToken()
         })
       };
   }
