@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IBasket } from 'src/app/Models/IBasket';
 import { AccountService } from 'src/app/Services/account.service';
 import { BascketManagementService } from 'src/app/Services/bascket-management.service';
@@ -13,15 +14,20 @@ export class HeaderComponent implements OnInit, DoCheck {
   offcanvasMenuOverlayClass:string;
   offcanvasMenuWrapperClass:string;
   isUserLogged: Boolean;
-
+  basket!:IBasket;
   userName:string="";
 
-  constructor( private accountService: AccountService) {
+  constructor( private accountService: AccountService,  basketService:BascketManagementService) {
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay";
     this.offcanvasMenuWrapperClass="offcanvas-menu-wrapper";
     this.arrow="►";
 
-    this.isUserLogged = false
+    this.isUserLogged = false;
+    if(accountService.IsUserLogged())
+      basketService.basketObject.subscribe({
+        next: (data)=>{this.basket=data; console.log(data)},
+      });
+
 
    }
 
