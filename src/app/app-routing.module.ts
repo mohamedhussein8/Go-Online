@@ -23,6 +23,7 @@ import { ProductsDashboardComponent } from './Components/Admin-Side/products-das
 import { CategoryComponent } from './Components/Admin-Side/category/category.component';
 import { HomeAdminComponent } from './Components/Admin-Side/home-admin/home-admin.component';
 import { NotAuthGuard } from './Guards/not-auth.guard';
+import { OrderDashboardComponent } from './Components/Admin-Side/order-dashboard/order-dashboard.component';
 
 
 const routes: Routes = [
@@ -47,7 +48,8 @@ const routes: Routes = [
       {path:'', redirectTo:'home',pathMatch:'full'},
       {path:'home',component:HomeAdminComponent ,canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]} },
       {path:'product',component:ProductsDashboardComponent, canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]} },
-      {path:'category', component:CategoryComponent , canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]}}
+      {path:'category', component:CategoryComponent , canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]}},
+      {path:'order', component:OrderDashboardComponent , canActivate: [AuthGuard, RolesGuard], data: {roles:[ConstantRoles.AdminRole]}}
     ]}
 ];
 

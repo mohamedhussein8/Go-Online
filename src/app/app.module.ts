@@ -44,6 +44,7 @@ import { HomeAdminComponent } from './Components/Admin-Side/home-admin/home-admi
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { OrderDashboardComponent } from './Components/Admin-Side/order-dashboard/order-dashboard.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {MatSortModule} from '@angular/material/sort';
     CategoryProductComponent,
     CategoryComponent,
     ProductsDashboardComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    OrderDashboardComponent
   ],
   imports: [
     BrowserModule,

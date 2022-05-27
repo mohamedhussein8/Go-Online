@@ -1,0 +1,52 @@
+
+<div class="container-fluid page">
+  <div class="page__box p-3 mt-2">Orders</div>
+  <div class="page__content shadow p-3">
+
+
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                    <th scope="col">order Id</th>
+                    <th scope="col">User Email</th>
+                    <th scope="col">Order State</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Shipped Address</th>
+                    <th scope="col">Order Items</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                 <tbody>
+                  <tr *ngFor="let item of dataSource; let i=index">
+                    <td >{{item.orderId}}</td>
+                    <td>{{item.userEmail}}</td>
+                    <!-- <td *ngFor="let prod of item.products">{{prod.Name}}</td> -->
+
+                      <td>{{item.orderState}}</td>
+
+                    <td>{{item.orderDate | date: 'dd/MM/yyyy' }}</td>
+
+                    <td>{{item.shippedAddress.detailed}}</td>
+                    <!-- <td>{{item.orderItems}}</td> -->
+
+                    <td>
+                      <ul *ngFor="let prod of item.orderItems">
+                        <li>{{prod.productName}}</li>
+                      </ul>
+                    </td>
+
+                    <td>{{item.totalPrice |currency:"EGP":"symbol"}}</td>
+                    <td>
+                      <!-- <button class="btn btn-info" (click)=" editProduct(item)"><mat-icon>edit</mat-icon></button> -->
+
+
+                      <button (click)=" deleteProd(item.orderId)" class="btn btn-danger mx-3"><mat-icon>delete</mat-icon></button>
+                  </td>
+                  </tr>
+                </tbody>
+            </table>
+  </div>
+</div>
+
+
