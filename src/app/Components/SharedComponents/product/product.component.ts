@@ -28,9 +28,9 @@ export class ProductComponent implements OnInit {
 
   }
   editRate(rate:number){
-    this.productService.editProductRate(this.item.id, this.item.rate).subscribe(data=>{
-      console.log(data);
-    })
+    this.productService.editProductRate(this.item.id, rate).subscribe(data=>{
+      this.item.rate=(data.rate);
+    });
 
   }
   AddToCart(){

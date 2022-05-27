@@ -19,7 +19,7 @@ export class ProductsManagementService {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
-          ,Authorization: accountService.GetToken()
+          ,Authorization: this.accountService.GetToken()
         })
       };
   }
@@ -94,9 +94,7 @@ export class ProductsManagementService {
   }
 
   editProductRate( prdId:number, newRate:number): Observable<IProduct> {
-    console.log(newRate)
-    //https://localhost:7240/api/Products/233/Rate?newRate=55'
-    return this.httpClient.get<IProduct>(`${environment.APIURL}/Products/${prdId}/Rate?${newRate}`,this.httpOptions )
+    return this.httpClient.put<IProduct>(`${environment.APIURL}/Products/${prdId}/Rate?newRate=${newRate}`,null,this.httpOptions )
 
   }
 
