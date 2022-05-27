@@ -12,34 +12,39 @@ export class HeaderComponent implements OnInit, DoCheck {
   arrow:string;
   offcanvasMenuOverlayClass:string;
   offcanvasMenuWrapperClass:string;
-  price:number;
-  bascket!:IBasket;
+  bascket:IBasket|null=null;
   isUserLogged: Boolean;
-  totalPrice : number=0;
 
+  userName:string="";
 
 
   constructor(public basketService:BascketManagementService, private accountService: AccountService) {
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay";
     this.offcanvasMenuWrapperClass="offcanvas-menu-wrapper";
     this.arrow="►";
-    this.price=0;
-    basketService.getBascketById().subscribe(data=>{
-      this.bascket=data;
-    });
 
     this.isUserLogged = false
-    //  this.basketService.getTotalPrice().subscribe(_price=>{
-    //    this.price=_price;
-    //  });
+    if(this.isUserLogged){
+      basketService.getBascketById().subscribe(data=>{
+        this.bascket=data;
+        console.log(this.bascket)
+      });
 
+    }
    }
+
   ngDoCheck(): void {
     this.isUserLogged = this.accountService.IsUserLogged();
+    if(this.isUserLogged)
+      this.userName=this.accountService.GetUser().userName;
+
   }
 
   ngOnInit(): void {
     this.isUserLogged = this.accountService.IsUserLogged();
+    if(this.isUserLogged)
+       this.userName=this.accountService.GetUser().userName;
+
   }
   openMenu(){
     this.offcanvasMenuOverlayClass="offcanvas-menu-overlay active";
@@ -55,10 +60,11 @@ export class HeaderComponent implements OnInit, DoCheck {
     else
       this.arrow="►";
   }
-  
+
   LogOut(): void
   {
     this.accountService.Logout();
+    this.userName="";
   }
 
 }

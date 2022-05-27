@@ -32,7 +32,7 @@
                             </div>
                             <div class="group-input">
                                 <label for="phonenumber">Phone Number *</label>
-                                <input #phoneInp="ngModel" type="password" id="phonenumber" name="phonenumber" [(ngModel)]="newUser.phoneNumber" pattern="^[0-9]{6,16}$" required>
+                                <input #phoneInp="ngModel" type="tel" id="phonenumber" name="phonenumber" [(ngModel)]="newUser.phoneNumber" pattern="^[0-9]{6,16}$" required>
                                 <div class="alert alert-danger" [hidden]="phoneInp.valid || phoneInp.untouched">
                                     <small *ngIf="phoneInp.errors?.['required']">Phone Number is Required!!</small>
                                     <small *ngIf="phoneInp.errors?.['pattern']">Phone Number Length must be between 6 and 16 Numbers</small>

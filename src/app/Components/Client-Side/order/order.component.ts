@@ -12,26 +12,29 @@ import { DeliveryStatus } from 'src/app/Enums/DeliveryStatus';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  @Input('app-order') order!:IOrder;
-  isDetails:boolean=false;
-  status:string="";
+  @Input() order!: IOrder;
+  isDetails: boolean = false;
 
-  constructor(orderService:OrdersManagementService, private activatedRoute: ActivatedRoute) {
+  constructor(orderService: OrdersManagementService, private activatedRoute: ActivatedRoute) {
 
-    this.activatedRoute.paramMap.subscribe((paramMap)=>{
-      if(paramMap.get('id')){
-        this.isDetails=true;
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      if (paramMap.get('id')) {
+        this.isDetails = true;
       }
-       orderService.getOrderById(Number(paramMap.get('id'))).subscribe(data=>
-        {
-          this.order=data;
-        });
-      this.status=DeliveryStatus[this.order?.status].toString();
 
-  });
-   }
+      if (paramMap.get('id')) {
+        this.isDetails = true;
+        orderService.getOrders().subscribe(orders => {
+          this.order = orders.find(ord => ord.orderId == Number(paramMap.get('id')))!;
+        })
+      }
 
+    });
+
+  }
   ngOnInit(): void {
   }
-
 }
+
+
+

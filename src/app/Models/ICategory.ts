@@ -3,6 +3,6 @@ import { ISubCategory } from "./ISubCategory";
 
 export interface ICategory {
   id:number;
-  name:String;
+  name:string;
   products: IProduct[];
 }

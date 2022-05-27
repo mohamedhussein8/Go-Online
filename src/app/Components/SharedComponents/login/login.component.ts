@@ -12,7 +12,7 @@ import { LoginVM } from 'src/app/ViewModels/loginVM';
 })
 export class LoginComponent implements OnInit {
   public logingUser: LoginVM;
-  constructor(private accountService: AccountService, private router: Router) { 
+  constructor(private accountService: AccountService, private router: Router) {
     this.logingUser =  new LoginVM();
   }
 
@@ -22,13 +22,14 @@ export class LoginComponent implements OnInit {
   Login()
   {
     this.accountService.Login(this.logingUser).subscribe(data => {
-        
+
       localStorage.setItem("User", JSON.stringify(data));
-        
+
         let userRoles = this.accountService.GetUserRoles();
-        
+
         if(userRoles.some( i => i === ConstantRoles.AdminRole))
           this.router.navigate(['/admin']);
+
           else
         this.router.navigate(['/Home']);
     });

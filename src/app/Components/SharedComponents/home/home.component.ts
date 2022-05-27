@@ -19,9 +19,7 @@ export class HomeComponent implements OnInit {
   id: any;
   constructor(private productService:ProductsManagementService) {
     this.productService.getFirstEightItems().subscribe(data=>{
-
       this.ProdList= data;
-
     });
     this.days = 0;
     this.minutes = 0; //January is 0!

@@ -20,19 +20,19 @@ export class ProductsAdminService {
   };
 }
   getAllProducts(): Observable<IproductAdmin[]> {
-    
+
     return this.httpClient.get<IproductAdmin[]>(`${environment.APIURL}/Products`)
 
   }
   getProductsByCatID(catID: number): Observable<IproductAdmin[]> {
     return this.httpClient.get<IproductAdmin[]>(`${environment.APIURL}/Products?categoryID=${catID}`)
-  
+
   }
   getProductByID(prdID: number): Observable<IproductAdmin> {
     return this.httpClient.get<IproductAdmin>(`${environment.APIURL}/Products/${prdID}`)
 
   }
-  
+
   addProduct(newPrd:any) {
     return this.httpClient.post<any> (`${environment.APIURL}/Products`,newPrd, this.httpOptions)
  }

@@ -4,23 +4,16 @@
   <div class="offcanvas__option">
     <div class="offcanvas__links">
       <a routerLink="/Login" routerLinkActive="active" *ngIf="!isUserLogged" class="nav-link">Sign in</a>
-      <a *ngIf="isUserLogged" (click)="LogOut()" style="cursor: pointer;" class="nav-link">Logout</a>
-      <a href="#">FAQs</a>
+      <a  *ngIf="isUserLogged" routerLinkActive="active"  style="cursor: pointer;" class="nav-link"> <i class="fa fa-user"></i>{{userName}}</a>
+      <a  *ngIf="isUserLogged" (click)="LogOut()" style="cursor: pointer;" class="nav-link btn-danger"> <i class="fa fa-arrow-left"></i>Logout</a>
     </div>
-    <div class="offcanvas__top__hover">
-      <span>Usd <i class="arrow_carrot-down"></i></span>
-      <ul>
-        <li>USD</li>
-        <li>EUR</li>
-        <li>USD</li>
-      </ul>
-    </div>
+
   </div>
   <div class="offcanvas__nav__option">
     <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
     <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket?.items?.length}}</span></a>
-    <div class="price">{{totalPrice|currency}}</div>
+    <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{this.bascket?.items?.count}</span></a>
+    <div class="price"><span *ngIf="isUserLogged">{{ this.bascket?.totalPrice|currency}}</span></div>
   </div>
   <div id="mobile-menu-wrap">
 
@@ -54,7 +47,7 @@
           <li routerLinkActive="active" class="list-group-item py-0"><a routerLink="/Blog" class="nav-link" role="menuitem">Blog</a></li>
           <li routerLinkActive="active"  class="list-group-item py-0"><a routerLink="/Contact"   role="menuitem">Contacts</a></li>
           <li routerLinkActive="active"  class="list-group-item  py-0"><a routerLink="/AboutUs"  class="nav-link" role="menuitem">About</a></li>
-          <li routerLinkActive=""  class="list-group-item  py-0"><a routerLink="/"  class="nav-link text-danger" role="menuitem">Be a Vendor</a></li>
+          <li routerLinkActive=""  class="list-group-item  py-0"><a routerLink="/"  class="nav-link text-success" role="menuitem">Be a Vendor</a></li>
         </ul>
       </nav>
     </div>
@@ -70,27 +63,20 @@
   <div class="header__top">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 col-md-7">
+        <div class="col-lg-4 col-md-7">
           <div class="header__top__left">
             <p>Free shipping, 30-day return or refund guarantee.</p>
           </div>
         </div>
-        <div class="col-lg-6 col-md-5">
+        <div class="col-lg-8 col-md-5">
           <div class="header__top__right">
             <div class="header__top__links">
-              <a routerLink="/"  class="nav-link text-danger" >Be a Vendor</a>
+              <a routerLink="/"  class="nav-link text-success" >Be a Vendor</a>
               <a routerLink="/Login" *ngIf="!isUserLogged" class="nav-link" >Sign in</a>
-              <a *ngIf="isUserLogged" (click)="LogOut()" class="nav-link" style="cursor: pointer;" >Logout</a>
-              <a href="#">FAQs</a>
+              <a *ngIf="isUserLogged" class="nav-link" style="cursor: pointer;" ><i class="fa fa-user"></i> {{userName}}</a>
+              <a *ngIf="isUserLogged" (click)="LogOut()" class="nav-link text-danger" style="cursor: pointer;" > <i class="fa fa-arrow-left"></i>Logout</a>
             </div>
-            <div class="header__top__hover">
-              <span>Usd <i class="arrow_carrot-down"></i></span>
-              <ul>
-                <li>USD</li>
-                <li>EUR</li>
-                <li>USD</li>
-              </ul>
-            </div>
+
           </div>
         </div>
       </div>
@@ -118,8 +104,8 @@
         <div class="header__nav__option">
           <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
           <a href="#"><img src="assets/img/icon/heart.png" alt=""></a>
-          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span>{{bascket?.items?.length}}</span></a>
-          <div class="price">{{totalPrice|currency}}</div>
+          <a routerLink="/Shopping-Cart" routerLinkActive="active" class="nav-link"><img src="assets/img/icon/cart.png" alt=""> <span *ngIf="isUserLogged">{{this.bascket?.items?.length}}</span></a>
+          <div class="price"><span *ngIf="isUserLogged">{{this.bascket?.totalPrice|currency}} </span></div>
         </div>
       </div>
     </div>

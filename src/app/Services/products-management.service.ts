@@ -1,29 +1,38 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../Models/IProduct';
-import { APIResponseVM } from '../ViewModels/apiresponse-vm';
-import { GenericApihandlerService } from './generic-apihandler.service';
-import { BehaviorSubject, catchError, from, map, Observable, retry, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { catchError, from, map, Observable, retry, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErrorHanlingManagementService } from './error-hanling-management.service';
 import { environment } from 'src/environments/environment';
+import { AccountService } from './account.service';
+import { productPagingVM } from '../ViewModels/productPagingVM';
+import { getPagingVM } from '../ViewModels/getPagingVM';
+import { ICategory } from '../Models/ICategory';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsManagementService {
+  httpOptions
   constructor(private httpClient: HttpClient,
-    private errorHandlingservice: ErrorHanlingManagementService) {
+    private errorHandlingservice: ErrorHanlingManagementService, accountService:AccountService) {
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+          ,Authorization: accountService.GetToken()
+        })
+      };
   }
   getProductById(id:number):Observable<IProduct>{
-    return this.httpClient.get<IProduct>(`${environment.APIURL}/Products/${id}`)
+    return this.httpClient.get<IProduct>(`${environment.APIURL}/Products/${id}`,this.httpOptions)
       .pipe(
         retry(3),
         catchError(this.errorHandlingservice.handleError)
       );
   }
   getAll():Observable<IProduct[]>{
-    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`)
+    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`, this.httpOptions)
       .pipe(
         retry(3),
         catchError(this.errorHandlingservice.handleError)
@@ -31,17 +40,60 @@ export class ProductsManagementService {
   }
 
   getFirstFourItems(){
-    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`)
+    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`, this.httpOptions)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)
     );
   }
   getFirstEightItems(){
-    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`)
+    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`, this.httpOptions)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)
     );
   }
+  getPage(filter:productPagingVM):Observable<getPagingVM>{
+    var filteration:string="";
+
+    if( filter.CategoryName !=null && filter.CategoryName.trim() !='' )
+      filteration =`CategoryName=${filter.CategoryName}`;
+
+     if(filter.rate!=null ){
+      if(filteration !="")
+       filteration=`${filteration}&rate=${filter.rate}`;
+      else
+       filteration =`rate=${filter.rate}`;
+    }
+
+     if(filter.maxPrice!=undefined ){
+      if(filteration !="")
+       filteration =`${filteration}&maxPrice=${filter.maxPrice}`;
+      else
+       filteration =`maxPrice=${filter.maxPrice}`;
+    }
+     if(filter.miniPrice!=undefined){
+      if(filteration !="")
+      filteration =`${filteration}&miniPrice=${filter.miniPrice}`;
+      else
+      filteration =`miniPrice=${filter.miniPrice}`;
+    }
+
+    if(filteration!="") filteration+="&";
+
+
+    return this.httpClient.get<getPagingVM>(`${environment.APIURL}/Products/PagedProducts?${filteration}PageNumber=${filter.PageNumber}&PageSize=${filter._pageSize}`, this.httpOptions)
+    .pipe(
+      retry(3),
+      catchError(this.errorHandlingservice.handleError)
+    );
+    //https://localhost:7240/PagedProducts?CategoryName=Shoes&rate=0&PageNumber=1&PageSize=10&maxPrice=20&miniPrice=12
+  }
+  getCategoryCount( name:string): Observable<number> {
+
+    return this.httpClient.get<number>(`${environment.APIURL}/Products/${name}/ProductsCount`,this.httpOptions )
+
+  }
 }
+
+
