@@ -49,7 +49,6 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     //Get All Products
     this.productService.getPage(new productPagingVM()).subscribe(data=>{
-      console.log(data  )
     this.ProdList=data?.result!;
     this.totalPages=Math.ceil(data?.count/10);
     this.totalItems=this.ProdList?.length;
@@ -92,7 +91,6 @@ export class ShopComponent implements OnInit {
 
     };
     this.productService.getPage(filterObject).subscribe(data=>{
-      console.log(data  )
     this.ProdList=data?.result!;
     this.totalPages=Math.ceil(data?.count/10);
     this.totalItems=this.ProdList?.length;
