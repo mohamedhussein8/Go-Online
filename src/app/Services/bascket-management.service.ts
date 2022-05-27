@@ -15,11 +15,12 @@ export class BascketManagementService {
   httpOptions;
   basket!: IBasket;
 
-  constructor(private httpClient: HttpClient, private errorHandlingservice: ErrorHanlingManagementService,private  accountService: AccountService) {
+  constructor(private httpClient: HttpClient, private errorHandlingservice: ErrorHanlingManagementService,
+    private  accountService: AccountService) {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-        , Authorization: accountService.IsUserLogged()? accountService.GetToken():""
+        , Authorization: this.accountService.IsUserLogged()? accountService.GetToken():""
       })
     };
     if (accountService.IsUserLogged()) {
@@ -39,8 +40,12 @@ export class BascketManagementService {
 
 
   AddToCart(newItem: IBasketItem): Observable<IBasket> {
-    this.getOptions()
-    return this.httpClient.post<IBasket>(`${environment.APIURL}/Basket`, JSON.stringify(newItem), this.httpOptions)
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        , Authorization: this.accountService.GetToken()
+      })
+    };    return this.httpClient.post<IBasket>(`${environment.APIURL}/Basket`, JSON.stringify(newItem), this.httpOptions)
       .pipe(
         retry(3)
       );

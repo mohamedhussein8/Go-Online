@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsManagementService } from 'src/app/Services/products-management.service';
 import { BascketManagementService} from 'src/app/Services/bascket-management.service';
 import { IBasketItem } from 'src/app/Models/IBasketItem';
+import { AccountService } from 'src/app/Services/account.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,14 +15,15 @@ export class ProductDetailsComponent implements OnInit {
   currPrdID: number=0;
   item!: IProduct;
   quantity:number;
-  ProdList:IProduct[]=[];
 
   constructor(private activatedRoute: ActivatedRoute,
               productService:ProductsManagementService,
-              private basketService:BascketManagementService) {
+              private basketService:BascketManagementService,
+              private router:Router,
+              private accountService:AccountService) {
 
 
-     this.quantity=2;
+     this.quantity=1;
      this.activatedRoute.paramMap.subscribe((paramMap)=>{
         this.currPrdID= Number(paramMap.get('id'))
         this.item.rate=0;
@@ -30,9 +32,6 @@ export class ProductDetailsComponent implements OnInit {
      productService.getProductById(this.currPrdID).subscribe(data=>{
         this.item=data;
         this.item.rate=0;
-     });
-     productService.getFirstFourItems().subscribe(data=>{
-      this.ProdList=data;
      });
 
 
@@ -45,16 +44,17 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   AddToCart(){
-    var basketItem:IBasketItem={
+    var newItem:IBasketItem={
       id:this.item.id.toString(),
       price:this.item.price,
-      quantity:this.quantity,
+      quantity:1,
       numberInStock:this.item.numberInStock,
       productName:this.item.name,
       productImage:this.item.imagePath
     }
-
-    this.basketService.AddToCart(basketItem);
+    if(this.accountService.IsUserLogged())
+       this.basketService.AddToCart(newItem).subscribe();
+    this.router.navigateByUrl("/Shopping-Cart");
 
   }
 

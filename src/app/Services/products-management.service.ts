@@ -15,23 +15,23 @@ import { getPagingVM } from '../ViewModels/getPagingVM';
 export class ProductsManagementService {
   httpOptions
   constructor(private httpClient: HttpClient,
-    private errorHandlingservice: ErrorHanlingManagementService) {
+    private errorHandlingservice: ErrorHanlingManagementService, private accountService:AccountService) {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
-          //,Authorization: accountService.GetToken()
+          ,Authorization: accountService.GetToken()
         })
       };
   }
   getProductById(id:number):Observable<IProduct>{
-    return this.httpClient.get<IProduct>(`${environment.APIURL}/Products/${id}`,this.httpOptions)
+    return this.httpClient.get<IProduct>(`${environment.APIURL}/Products/${id}`)
       .pipe(
         retry(3),
         catchError(this.errorHandlingservice.handleError)
       );
   }
   getAll():Observable<IProduct[]>{
-    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`, this.httpOptions)
+    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`)
       .pipe(
         retry(3),
         catchError(this.errorHandlingservice.handleError)
@@ -39,14 +39,14 @@ export class ProductsManagementService {
   }
 
   getFirstFourItems(){
-    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`, this.httpOptions)
+    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)
     );
   }
   getFirstEightItems(){
-    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`, this.httpOptions)
+    return this.httpClient.get<IProduct[]>(`${environment.APIURL}/Products`)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)
@@ -80,7 +80,6 @@ export class ProductsManagementService {
 
     if(filteration!="") filteration+="&";
 
-
     return this.httpClient.get<getPagingVM>(`${environment.APIURL}/Products/PagedProducts?${filteration}PageNumber=${filter.PageNumber}&PageSize=${filter._pageSize}`, this.httpOptions)
     .pipe(
       retry(3),
@@ -90,9 +89,17 @@ export class ProductsManagementService {
   }
   getCategoryCount( name:string): Observable<number> {
 
-    return this.httpClient.get<number>(`${environment.APIURL}/Products/${name}/ProductsCount`,this.httpOptions )
+    return this.httpClient.get<number>(`${environment.APIURL}/Products/${name}/ProductsCount` )
 
   }
+
+  editProductRate( prdId:number, newRate:number): Observable<IProduct> {
+    console.log(newRate)
+    //https://localhost:7240/api/Products/233/Rate?newRate=55'
+    return this.httpClient.get<IProduct>(`${environment.APIURL}/Products/${prdId}/Rate?${newRate}`,this.httpOptions )
+
+  }
+
 }
 
 

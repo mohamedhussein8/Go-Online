@@ -96,16 +96,7 @@
                                     <p>Showing  {{this.pagestartItemPrint}} – {{this.pageEndItemPrint}} of {{this.totalItems}} results</p>
                                 </div>
                             </div>
-                            <!-- <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__right">
-                                    <p>Sort by Price:</p>
-                                    <select>
-                                      <option value="">Low To High</option>
-                                      <option value="">High To Low</option>
 
-                                    </select>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div class="row">
@@ -118,7 +109,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
-                                <a *ngFor="let num of [].constructor(totalPages); index as i" (click)="changePage(i)" [class]="{'active': i==0}">{{i+1}}</a>
+                                <a *ngFor="let num of [].constructor(totalPages); index as i" (click)="changePage(i)" style="cursor: pointer;" [class]="{'active': i==pagenumber-1}">{{i+1}}</a>
                             </div>
                         </div>
                     </div>

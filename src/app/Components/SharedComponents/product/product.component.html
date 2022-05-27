@@ -1,7 +1,7 @@
 <div class="col-12">
   <div class="product__item">
     <div class="product__item__pic set-bg" style="background-image:url('{{item.imagePath}}')">
-      <span class="label" [hidden]="!item.isNew">New</span>
+      <span class="label text-danger" [hidden]="item.numberInStock>1" >Out Of Stock</span>
       <ul class="product__hover">
         <li><a href="#"><img src="assets/img/icon/heart.png" alt=""></a></li>
         <li><a href="#"><img src="assets/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
@@ -10,11 +10,11 @@
     </div>
     <div class="product__item__text">
       <h6>{{item.name}}</h6>
-      <a (click)="AddToCart()" style="cursor: pointer;" class="add-cart">+ Add To Cart</a>
+      <a (click)="AddToCart()" [hidden]="item.numberInStock<1" style="cursor: pointer;" class="add-cart">+ Add To Cart</a>
       <!-- <a routerLink="/Shopping-Cart" (click)="AddToCart()" class="add-cart">+ Add To Cart</a> -->
       <div class="rating">
         <ng-container *ngFor="let number of [].constructor(5); index as i">
-          <button class="btn px-0 mx-0" style="outline: none; box-shadow:none;" (click)="editRate(i)"><i
+          <button class="btn px-0 mx-0" style="outline: none; box-shadow:none;" (click)="editRate(i+1)"><i
             [ngClass]="{'fa-star':i<=item.rate, 'fa fa-star-o':i>item.rate ,'goldRate':i<=item.rate, 'fa':true}"></i>
           </button>
         </ng-container>
