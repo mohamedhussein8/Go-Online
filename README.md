@@ -1,27 +1,15 @@
 # GoOnline
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
+An Ecommerce WebSite for clothes using angular 13 Connected to WebAPI. 
 
-## Development server
+## Website Images:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![Screenshot (259)](https://user-images.githubusercontent.com/48651088/170792043-4a3bdf1f-be79-4e27-8051-a86c367abffb.png)
+![Screenshot (260)](https://user-images.githubusercontent.com/48651088/170792049-1e406a09-4a1e-48b2-b10f-9b1e2ed6972e.png)
+![Screenshot (261)](https://user-images.githubusercontent.com/48651088/170792053-9810f614-fa48-494d-8842-23f30507b261.png)
+![Screenshot (262)](https://user-images.githubusercontent.com/48651088/170792063-64e0a096-a97f-46d8-b2e4-6b97eb34ef74.png)
+![Screenshot (263)](https://user-images.githubusercontent.com/48651088/170792071-bbcad805-0370-4de0-b5d4-eec1ece374c5.png)
+![Screenshot (264)](https://user-images.githubusercontent.com/48651088/170792075-fc482f55-2860-4dd9-aee8-8469d07f61e0.png)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
