@@ -18,7 +18,7 @@
                             </div>
                             <div class="group-input">
                                 <label for="pass">Password *</label>
-                                <input #passwordInp="ngModel" type="text" id="pass" name="pass" [(ngModel)]="logingUser.Password" required >
+                                <input #passwordInp="ngModel" type="password" id="pass" name="pass" [(ngModel)]="logingUser.Password" required >
                                 <div class="alert alert-danger" [hidden]="passwordInp.valid || passwordInp.untouched">
                                     <small *ngIf="passwordInp.errors?.['required']">Password is Required!!</small>
                                 </div>

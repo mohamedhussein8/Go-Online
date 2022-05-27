@@ -20,7 +20,7 @@ export class ProductsManagementService {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
-          //,Authorization: accountService.GetToken()
+          ,Authorization: accountService.GetToken()
         })
       };
   }
@@ -54,7 +54,35 @@ export class ProductsManagementService {
     );
   }
   getPage(filter:productPagingVM):Observable<getPagingVM>{
-    return this.httpClient.get<getPagingVM>(`${environment.APIURL}/Products?CategoryName=${filter.CategoryName}&rate=${filter.rate}&PageNumber=${filter.PageNumber}&PageSize=${filter._pageSize}&maxPrice=${filter.maxPrice}&miniPrice=${filter.miniPrice}`, this.httpOptions)
+    var filteration:string="";
+
+    if( filter.CategoryName !=null && filter.CategoryName.trim() !='' )
+      filteration =`CategoryName=${filter.CategoryName}`;
+
+     if(filter.rate!=null ){
+      if(filteration !="")
+       filteration=`${filteration}&rate=${filter.rate}`;
+      else
+       filteration =`rate=${filter.rate}`;
+    }
+
+     if(filter.maxPrice!=undefined ){
+      if(filteration !="")
+       filteration =`${filteration}&maxPrice=${filter.maxPrice}`;
+      else
+       filteration =`maxPrice=${filter.maxPrice}`;
+    }
+     if(filter.miniPrice!=undefined){
+      if(filteration !="")
+      filteration =`${filteration}&miniPrice=${filter.miniPrice}`;
+      else
+      filteration =`miniPrice=${filter.miniPrice}`;
+    }
+
+    if(filteration!="") filteration+="&";
+
+
+    return this.httpClient.get<getPagingVM>(`${environment.APIURL}/Products/PagedProducts?${filteration}PageNumber=${filter.PageNumber}&PageSize=${filter._pageSize}`, this.httpOptions)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)

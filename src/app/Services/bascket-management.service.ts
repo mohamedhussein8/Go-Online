@@ -32,11 +32,7 @@ export class BascketManagementService {
   }
 
   getBascketById():Observable<IBasket>{
-    return this.httpClient.get<IBasket>(`${environment.APIURL}/Basket`, this.httpOptions)
-    .pipe(
-      retry(3)
-//      catchError(this.errorHandlingservice.handleError)
-    );
+    return this.httpClient.get<IBasket>(`${environment.APIURL}/Basket`, this.httpOptions);
   }
 
 
@@ -100,18 +96,13 @@ export class BascketManagementService {
     }
 
 
-  checkAvalibality(id:number){
-    // var item =this.Basket.Items?.find(prd=> prd.Product.id==id)!;
-    // if(item.ProductQuantity>item.Product.numInStock)
-    // item.ProductQuantity=item.Product.numInStock;
-  }
+
   RemoveItemById(id:string){
     return this.httpClient.delete<IBasket>(`${environment.APIURL}/Basket/${id}`, this.httpOptions)
     .pipe(
       retry(3),
       catchError(this.errorHandlingservice.handleError)
     );
-   // this.Basket.TotalPrice-=item.TotalPrice;
   }
   clearBasket(){
   }

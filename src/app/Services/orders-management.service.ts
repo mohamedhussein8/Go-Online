@@ -5,7 +5,7 @@ import { DeliveryStatus } from '../Enums/DeliveryStatus';
 import { PaymentMethod } from '../Enums/PaymentMethod';
 import { IOrder } from '../Models/IOrder';
 import { BascketManagementService } from './bascket-management.service';
-import { BehaviorSubject, catchError, from, map, Observable, retry, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, from, map, Observable, Observer, retry, throwError } from 'rxjs';
 import { ErrorHanlingManagementService } from './error-hanling-management.service';
 import { checkOutVM } from '../ViewModels/checkOutVM';
 import { AccountService } from './account.service';
@@ -33,7 +33,8 @@ export class OrdersManagementService {
       );
   }
 
-  getOrders(userEmail:string):Observable<IOrder[]>{
+  getOrders():Observable<IOrder[]>{
+    var userEmail:string =this.accountService.GetUser().email;
     return this.httpClient.get<IOrder[]>(`${environment.APIURL}/Order/${userEmail}`,this.httpOptions)
     .pipe(
       retry(3),
@@ -41,10 +42,10 @@ export class OrdersManagementService {
     );
   }
   placeOrder(userdata:checkOutVM):Observable<IOrder>{
-    console.log(userdata);
-    return this.httpClient.post<IOrder>(`${environment.APIURL}/Order`,JSON.stringify(checkOutVM),this.httpOptions)
+    return this.httpClient.post<IOrder>(`${environment.APIURL}/Order`,JSON.stringify(userdata),this.httpOptions)
     .pipe(
-
+      retry(3),
+      catchError(this.errorHandlingservice.handleError)
     );
   }
 }

@@ -1,13 +1,14 @@
 import { IBasketItem } from "./IBasketItem";
 import { PaymentMethod } from "../Enums/PaymentMethod";
 import { DeliveryStatus } from "../Enums/DeliveryStatus";
+import { Address } from "./IAddress";
 
 export interface IOrder{
-  id:number;
-  items:IBasketItem[]|null,
+  orderId:number;
+  orderItems:IBasketItem[]|null,
   totalPrice:number,
-  address:string,
-  status:DeliveryStatus,
-  deliveryDate:string,
+  orderState:DeliveryStatus,
+  orderDate:string,
   paymentMethod:PaymentMethod
+  shippedAddress:Address
 }

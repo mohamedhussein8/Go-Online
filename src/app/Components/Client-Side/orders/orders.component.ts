@@ -12,9 +12,9 @@ export class OrdersComponent implements OnInit {
   orders!:IOrder[];
 
   constructor(private ordersService:OrdersManagementService) {
-  //ordersService.getOrders().subscribe(data=>{
-    //this.orders=data;
-    //})
+  ordersService.getOrders().subscribe(data=>{
+    this.orders=data;
+    })
    }
 
 

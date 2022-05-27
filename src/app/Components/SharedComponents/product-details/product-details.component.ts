@@ -22,28 +22,29 @@ export class ProductDetailsComponent implements OnInit {
 
 
      this.quantity=2;
+     this.activatedRoute.paramMap.subscribe((paramMap)=>{
+        this.currPrdID= Number(paramMap.get('id'))
+        this.item.rate=0;
+
+    });
      productService.getProductById(this.currPrdID).subscribe(data=>{
-      this.item=data;
+        this.item=data;
+        this.item.rate=0;
      });
      productService.getFirstFourItems().subscribe(data=>{
       this.ProdList=data;
      });
-     this.activatedRoute.paramMap.subscribe((paramMap)=>{
-        this.currPrdID= Number(paramMap.get('id'))
-    });
 
 
    }
    editRate(rate:number){
     this.item.rate=rate;
-    console.log(rate);
 
   }
 
   ngOnInit(): void {
   }
   AddToCart(){
-    console.log("hi");
     var basketItem:IBasketItem={
       id:this.item.id.toString(),
       price:this.item.price,

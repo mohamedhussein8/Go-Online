@@ -12,9 +12,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   arrow:string;
   offcanvasMenuOverlayClass:string;
   offcanvasMenuWrapperClass:string;
-  price:number=0;
   bascket:IBasket|null=null;
-  count:number|undefined=0;
   isUserLogged: Boolean;
   userName:string="";
 
@@ -25,24 +23,24 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.isUserLogged = false
     if(this.isUserLogged){
       basketService.getBascketById().subscribe(data=>{
-        this.price=data.totalPrice;
-        this.count=data.items?.length;
+        this.bascket=data;
+        console.log(this.bascket)
       });
 
     }
-
-
    }
+
   ngDoCheck(): void {
     this.isUserLogged = this.accountService.IsUserLogged();
-    this.userName=this.accountService.GetUser().userName;
+    if(this.isUserLogged)
+      this.userName=this.accountService.GetUser().userName;
 
   }
 
   ngOnInit(): void {
     this.isUserLogged = this.accountService.IsUserLogged();
-    console.log(this.accountService.GetUser());
-    this.userName=this.accountService.GetUser().userName;
+    if(this.isUserLogged)
+       this.userName=this.accountService.GetUser().userName;
 
   }
   openMenu(){
